@@ -8,15 +8,18 @@ const pathResolve = (dir: string): any => {
 
 const alias: Record<string, string> = {
   "@": pathResolve("src"),
+  views: pathResolve("src/views"),
+  utils: pathResolve("src/utils"),
+  style: pathResolve("src/style"),
 };
 
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
     host: "0.0.0.0",
-    port: 8888,
+    port: 8080,
     https: false,
-    open: true,
+    open: false,
     proxy: {},
     cors: true,
   },

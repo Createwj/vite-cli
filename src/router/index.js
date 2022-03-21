@@ -6,7 +6,7 @@ const routes = Object.keys(importRoutes).reduce(
   (routesArr, path) => routesArr.concat(importRoutes[path].default),
   []
 );
-
+console.log(importRoutes)
 function createRouter() {
   return _createRouter({
     history: createWebHistory(),

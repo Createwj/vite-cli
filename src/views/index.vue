@@ -1,15 +1,7 @@
 <template>
-  <h3>123</h3>
-  <h3>home</h3>
+  <h3>index</h3>
 </template>
 <script setup lang="ts"></script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
