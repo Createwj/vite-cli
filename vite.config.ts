@@ -25,7 +25,7 @@ export default defineConfig({
   },
   plugins: [vue()],
   resolve: {
-    // ****************** 路径配置新增
-    alias, // ****************** 路径配置新增
+    // ***** 路径配置新增
+    alias, // ***** 路径配置新增
   },
 });

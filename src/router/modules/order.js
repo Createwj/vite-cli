@@ -1,16 +1,16 @@
 export default [
-  // {
-  //   path: "/",
-  //   component: () => import("@/layout/index.vue"),
-  //   children: [
-  //     {
-  //       path: "/pages",
-  //       component: () => import("@/views/my/index.vue"),
-  //     },
-  //     {
-  //       path: "/about",
-  //       component: () => import("@/views/my/index.vue"),
-  //     },
-  //   ],
-  // },
+  {
+    path: "/my",
+    component: () => import("@/layout/index.vue"),
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/my/index.vue"),
+      },
+      {
+        path: "about",
+        component: () => import("@/views/my/about.vue"),
+      },
+    ],
+  },
 ];
