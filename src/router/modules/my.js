@@ -11,6 +11,10 @@ export default [
         path: "about",
         component: () => import("@/views/my/about.vue"),
       },
+      {
+        path: "center",
+        component: () => import("@/views/my/center.vue"),
+      },
     ],
   },
 ];
