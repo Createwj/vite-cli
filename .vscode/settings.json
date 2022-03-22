@@ -28,7 +28,16 @@
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "eslint.validate": ["javascript", "javascriptreact", "html", "vue"],
+  "eslint.validate": [
+    "vue",
+    "html",
+    "jsx",
+    "tsx",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
@@ -47,5 +56,12 @@
   "editor.renderControlCharacters": true,
 
   "editor.renderWhitespace": "all",
-  "prettier.useEditorConfig": false
+  "prettier.useEditorConfig": false,
+  "stylelint.autoFix": true,
+  "stylelint.enable": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore"
 }
