@@ -24,7 +24,7 @@ export default defineConfig({
     proxy: {},
     cors: true,
   },
-  plugins: [vue(),WindiCSS()],
+  plugins: [vue(), WindiCSS()],
   resolve: {
     // ***** 路径配置新增
     alias, // ***** 路径配置新增
