@@ -1,7 +1,9 @@
 import { createApp } from "vue";
 import router, { setupRouter } from "@/router/index.js";
 import App from "./App.vue";
-import "style/tailwind.css";
+
+import 'virtual:windi.css'
+import 'virtual:windi-devtools'
 
 const app = createApp(App);
 

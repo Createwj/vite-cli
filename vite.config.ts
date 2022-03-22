@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import WindiCSS from 'vite-plugin-windicss'
 
 import { resolve } from "path";
 const pathResolve = (dir: string): any => {
@@ -23,7 +24,7 @@ export default defineConfig({
     proxy: {},
     cors: true,
   },
-  plugins: [vue()],
+  plugins: [vue(),WindiCSS()],
   resolve: {
     // ***** 路径配置新增
     alias, // ***** 路径配置新增

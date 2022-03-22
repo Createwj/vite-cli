@@ -1,6 +1,6 @@
 <template>
   <div class="inner-box">
-    <h3 class="text-4xl font-bold text-center text-blue-500">center</h3>
+    <h3 class="text-4xl font-bold text-center text-blue-500 ">center</h3>
   </div>
 </template>
 <script setup lang="ts"></script>

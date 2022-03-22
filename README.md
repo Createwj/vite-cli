@@ -14,3 +14,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 node v16.13.1
 pnpm 6.32.3
+
+
+windicss使用文档
+https://cn.windicss.org/guide/configuration.html
