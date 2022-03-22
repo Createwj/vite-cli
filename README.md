@@ -14,3 +14,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 node v16.13.1
 pnpm 6.32.3
+
+.husk不起作用 执行
+
+chmod 777 .husky/pre-commit
