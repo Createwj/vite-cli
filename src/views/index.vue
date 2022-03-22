@@ -1,7 +1,7 @@
 <template>
-  <h3>/</h3>
+  <div class="p-8">
+    <h3 class="text-cool-gray-900">title</h3>
+  </div>
 </template>
 <script setup lang="ts"></script>
-<style>
-
-</style>
+<style scoped lang="scss"></style>
