@@ -142,6 +142,38 @@ main {
 .module-filter + .module-filter {
   margin-left: 0.5rem;
 }
+
+.details {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: calc(50% - 85px);
+  left: calc(50% - 85px);
+  width: 170px;
+  height: 170px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--font-color);
+  z-index: 100;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.details-size {
+  font-size: 0.8em;
+}
+
+.details-name {
+  font-weight: bold;
+}
+
+.details-percentage {
+  margin: 0.4em 0em;
+  font-size: 2.4em;
+  line-height: 1em;
+}
   </style>
 </head>
 <body>
@@ -151,7 +183,7 @@ main {
 var drawChart = (function (exports) {
   'use strict';
 
-  var n,l$1,u$1,t$1,r$1,o$2,f$1,e$2={},c$1=[],s$1=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;function a$1(n,l){for(var u in l)n[u]=l[u];return n}function h$1(n){var l=n.parentNode;l&&l.removeChild(n);}function v$1(l,u,i){var t,r,o,f={};for(o in u)"key"==o?t=u[o]:"ref"==o?r=u[o]:f[o]=u[o];if(arguments.length>2&&(f.children=arguments.length>3?n.call(arguments,2):i),"function"==typeof l&&null!=l.defaultProps)for(o in l.defaultProps)void 0===f[o]&&(f[o]=l.defaultProps[o]);return y$1(l,f,t,r,null)}function y$1(n,i,t,r,o){var f={type:n,props:i,key:t,ref:r,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:null==o?++u$1:o};return null==o&&null!=l$1.vnode&&l$1.vnode(f),f}function d$1(n){return n.children}function _(n,l){this.props=n,this.context=l;}function k$1(n,l){if(null==l)return n.__?k$1(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?k$1(n):null}function b$1(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return b$1(n)}}function m$1(n){(!n.__d&&(n.__d=!0)&&t$1.push(n)&&!g$1.__r++||o$2!==l$1.debounceRendering)&&((o$2=l$1.debounceRendering)||r$1)(g$1);}function g$1(){for(var n;g$1.__r=t$1.length;)n=t$1.sort(function(n,l){return n.__v.__b-l.__v.__b}),t$1=[],n.some(function(n){var l,u,i,t,r,o;n.__d&&(r=(t=(l=n).__v).__e,(o=l.__P)&&(u=[],(i=a$1({},t)).__v=t.__v+1,j$1(o,t,i,l.__n,void 0!==o.ownerSVGElement,null!=t.__h?[r]:null,u,null==r?k$1(t):r,t.__h),z(u,t),t.__e!=r&&b$1(t)));});}function w$1(n,l,u,i,t,r,o,f,s,a){var h,v,p,_,b,m,g,w=i&&i.__k||c$1,A=w.length;for(u.__k=[],h=0;h<l.length;h++)if(null!=(_=u.__k[h]=null==(_=l[h])||"boolean"==typeof _?null:"string"==typeof _||"number"==typeof _||"bigint"==typeof _?y$1(null,_,null,null,_):Array.isArray(_)?y$1(d$1,{children:_},null,null,null):_.__b>0?y$1(_.type,_.props,_.key,null,_.__v):_)){if(_.__=u,_.__b=u.__b+1,null===(p=w[h])||p&&_.key==p.key&&_.type===p.type)w[h]=void 0;else for(v=0;v<A;v++){if((p=w[v])&&_.key==p.key&&_.type===p.type){w[v]=void 0;break}p=null;}j$1(n,_,p=p||e$2,t,r,o,f,s,a),b=_.__e,(v=_.ref)&&p.ref!=v&&(g||(g=[]),p.ref&&g.push(p.ref,null,_),g.push(v,_.__c||b,_)),null!=b?(null==m&&(m=b),"function"==typeof _.type&&_.__k===p.__k?_.__d=s=x$1(_,s,n):s=P(n,_,p,w,b,s),"function"==typeof u.type&&(u.__d=s)):s&&p.__e==s&&s.parentNode!=n&&(s=k$1(p));}for(u.__e=m,h=A;h--;)null!=w[h]&&("function"==typeof u.type&&null!=w[h].__e&&w[h].__e==u.__d&&(u.__d=k$1(i,h+1)),N(w[h],w[h]));if(g)for(h=0;h<g.length;h++)M(g[h],g[++h],g[++h]);}function x$1(n,l,u){for(var i,t=n.__k,r=0;t&&r<t.length;r++)(i=t[r])&&(i.__=n,l="function"==typeof i.type?x$1(i,l,u):P(u,i,i,t,i.__e,l));return l}function P(n,l,u,i,t,r){var o,f,e;if(void 0!==l.__d)o=l.__d,l.__d=void 0;else if(null==u||t!=r||null==t.parentNode)n:if(null==r||r.parentNode!==n)n.appendChild(t),o=null;else {for(f=r,e=0;(f=f.nextSibling)&&e<i.length;e+=2)if(f==t)break n;n.insertBefore(t,r),o=r;}return void 0!==o?o:t.nextSibling}function C(n,l,u,i,t){var r;for(r in u)"children"===r||"key"===r||r in l||H(n,r,null,u[r],i);for(r in l)t&&"function"!=typeof l[r]||"children"===r||"key"===r||"value"===r||"checked"===r||u[r]===l[r]||H(n,r,l[r],u[r],i);}function $(n,l,u){"-"===l[0]?n.setProperty(l,u):n[l]=null==u?"":"number"!=typeof u||s$1.test(l)?u:u+"px";}function H(n,l,u,i,t){var r;n:if("style"===l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof i&&(n.style.cssText=i=""),i)for(l in i)u&&l in u||$(n.style,l,"");if(u)for(l in u)i&&u[l]===i[l]||$(n.style,l,u[l]);}else if("o"===l[0]&&"n"===l[1])r=l!==(l=l.replace(/Capture$/,"")),l=l.toLowerCase()in n?l.toLowerCase().slice(2):l.slice(2),n.l||(n.l={}),n.l[l+r]=u,u?i||n.addEventListener(l,r?T:I,r):n.removeEventListener(l,r?T:I,r);else if("dangerouslySetInnerHTML"!==l){if(t)l=l.replace(/xlink[H:h]/,"h").replace(/sName$/,"s");else if("href"!==l&&"list"!==l&&"form"!==l&&"tabIndex"!==l&&"download"!==l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null!=u&&(!1!==u||"a"===l[0]&&"r"===l[1])?n.setAttribute(l,u):n.removeAttribute(l));}}function I(n){this.l[n.type+!1](l$1.event?l$1.event(n):n);}function T(n){this.l[n.type+!0](l$1.event?l$1.event(n):n);}function j$1(n,u,i,t,r,o,f,e,c){var s,h,v,y,p,k,b,m,g,x,A,P=u.type;if(void 0!==u.constructor)return null;null!=i.__h&&(c=i.__h,e=u.__e=i.__e,u.__h=null,o=[e]),(s=l$1.__b)&&s(u);try{n:if("function"==typeof P){if(m=u.props,g=(s=P.contextType)&&t[s.__c],x=s?g?g.props.value:s.__:t,i.__c?b=(h=u.__c=i.__c).__=h.__E:("prototype"in P&&P.prototype.render?u.__c=h=new P(m,x):(u.__c=h=new _(m,x),h.constructor=P,h.render=O),g&&g.sub(h),h.props=m,h.state||(h.state={}),h.context=x,h.__n=t,v=h.__d=!0,h.__h=[]),null==h.__s&&(h.__s=h.state),null!=P.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=a$1({},h.__s)),a$1(h.__s,P.getDerivedStateFromProps(m,h.__s))),y=h.props,p=h.state,v)null==P.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else {if(null==P.getDerivedStateFromProps&&m!==y&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(m,x),!h.__e&&null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(m,h.__s,x)||u.__v===i.__v){h.props=m,h.state=h.__s,u.__v!==i.__v&&(h.__d=!1),h.__v=u,u.__e=i.__e,u.__k=i.__k,u.__k.forEach(function(n){n&&(n.__=u);}),h.__h.length&&f.push(h);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(m,h.__s,x),null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(y,p,k);});}h.context=x,h.props=m,h.state=h.__s,(s=l$1.__r)&&s(u),h.__d=!1,h.__v=u,h.__P=n,s=h.render(h.props,h.state,h.context),h.state=h.__s,null!=h.getChildContext&&(t=a$1(a$1({},t),h.getChildContext())),v||null==h.getSnapshotBeforeUpdate||(k=h.getSnapshotBeforeUpdate(y,p)),A=null!=s&&s.type===d$1&&null==s.key?s.props.children:s,w$1(n,Array.isArray(A)?A:[A],u,i,t,r,o,f,e,c),h.base=u.__e,u.__h=null,h.__h.length&&f.push(h),b&&(h.__E=h.__=null),h.__e=!1;}else null==o&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=L(i.__e,u,i,t,r,o,f,c);(s=l$1.diffed)&&s(u);}catch(n){u.__v=null,(c||null!=o)&&(u.__e=e,u.__h=!!c,o[o.indexOf(e)]=null),l$1.__e(n,u,i);}}function z(n,u){l$1.__c&&l$1.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u);});}catch(n){l$1.__e(n,u.__v);}});}function L(l,u,i,t,r,o,f,c){var s,a,v,y=i.props,p=u.props,d=u.type,_=0;if("svg"===d&&(r=!0),null!=o)for(;_<o.length;_++)if((s=o[_])&&"setAttribute"in s==!!d&&(d?s.localName===d:3===s.nodeType)){l=s,o[_]=null;break}if(null==l){if(null===d)return document.createTextNode(p);l=r?document.createElementNS("http://www.w3.org/2000/svg",d):document.createElement(d,p.is&&p),o=null,c=!1;}if(null===d)y===p||c&&l.data===p||(l.data=p);else {if(o=o&&n.call(l.childNodes),a=(y=i.props||e$2).dangerouslySetInnerHTML,v=p.dangerouslySetInnerHTML,!c){if(null!=o)for(y={},_=0;_<l.attributes.length;_++)y[l.attributes[_].name]=l.attributes[_].value;(v||a)&&(v&&(a&&v.__html==a.__html||v.__html===l.innerHTML)||(l.innerHTML=v&&v.__html||""));}if(C(l,p,y,r,c),v)u.__k=[];else if(_=u.props.children,w$1(l,Array.isArray(_)?_:[_],u,i,t,r&&"foreignObject"!==d,o,f,o?o[0]:i.__k&&k$1(i,0),c),null!=o)for(_=o.length;_--;)null!=o[_]&&h$1(o[_]);c||("value"in p&&void 0!==(_=p.value)&&(_!==y.value||_!==l.value||"progress"===d&&!_)&&H(l,"value",_,y.value,!1),"checked"in p&&void 0!==(_=p.checked)&&_!==l.checked&&H(l,"checked",_,y.checked,!1));}return l}function M(n,u,i){try{"function"==typeof n?n(u):n.current=u;}catch(n){l$1.__e(n,i);}}function N(n,u,i){var t,r;if(l$1.unmount&&l$1.unmount(n),(t=n.ref)&&(t.current&&t.current!==n.__e||M(t,null,u)),null!=(t=n.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount();}catch(n){l$1.__e(n,u);}t.base=t.__P=null;}if(t=n.__k)for(r=0;r<t.length;r++)t[r]&&N(t[r],u,"function"!=typeof n.type);i||null==n.__e||h$1(n.__e),n.__e=n.__d=void 0;}function O(n,l,u){return this.constructor(n,u)}function S(u,i,t){var r,o,f;l$1.__&&l$1.__(u,i),o=(r="function"==typeof t)?null:t&&t.__k||i.__k,f=[],j$1(i,u=(!r&&t||i).__k=v$1(d$1,null,[u]),o||e$2,e$2,void 0!==i.ownerSVGElement,!r&&t?[t]:o?null:i.firstChild?n.call(i.childNodes):null,f,!r&&t?t:o?o.__e:i.firstChild,r),z(f,u);}function D(n,l){var u={__c:l="__cC"+f$1++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var u,i;return this.getChildContext||(u=[],(i={})[l]=this,this.getChildContext=function(){return i},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(m$1);},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u.splice(u.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n=c$1.slice,l$1={__e:function(n,l){for(var u,i,t;l=l.__;)if((u=l.__c)&&!u.__)try{if((i=u.constructor)&&null!=i.getDerivedStateFromError&&(u.setState(i.getDerivedStateFromError(n)),t=u.__d),null!=u.componentDidCatch&&(u.componentDidCatch(n),t=u.__d),t)return u.__E=u}catch(l){n=l;}throw n}},u$1=0,_.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=a$1({},this.state),"function"==typeof n&&(n=n(a$1({},u),this.props)),n&&a$1(u,n),null!=n&&this.__v&&(l&&this.__h.push(l),m$1(this));},_.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),m$1(this));},_.prototype.render=d$1,t$1=[],r$1="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,g$1.__r=0,f$1=0;
+  var n,l$1,u$1,t$1,r$1,o$2,f$1,e$2={},c$1=[],s=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;function a$1(n,l){for(var u in l)n[u]=l[u];return n}function h(n){var l=n.parentNode;l&&l.removeChild(n);}function v$1(l,u,i){var t,r,o,f={};for(o in u)"key"==o?t=u[o]:"ref"==o?r=u[o]:f[o]=u[o];if(arguments.length>2&&(f.children=arguments.length>3?n.call(arguments,2):i),"function"==typeof l&&null!=l.defaultProps)for(o in l.defaultProps)void 0===f[o]&&(f[o]=l.defaultProps[o]);return y$1(l,f,t,r,null)}function y$1(n,i,t,r,o){var f={type:n,props:i,key:t,ref:r,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:null==o?++u$1:o};return null==o&&null!=l$1.vnode&&l$1.vnode(f),f}function d$1(n){return n.children}function _(n,l){this.props=n,this.context=l;}function k$1(n,l){if(null==l)return n.__?k$1(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?k$1(n):null}function b$1(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return b$1(n)}}function m$1(n){(!n.__d&&(n.__d=!0)&&t$1.push(n)&&!g$1.__r++||o$2!==l$1.debounceRendering)&&((o$2=l$1.debounceRendering)||r$1)(g$1);}function g$1(){for(var n;g$1.__r=t$1.length;)n=t$1.sort(function(n,l){return n.__v.__b-l.__v.__b}),t$1=[],n.some(function(n){var l,u,i,t,r,o;n.__d&&(r=(t=(l=n).__v).__e,(o=l.__P)&&(u=[],(i=a$1({},t)).__v=t.__v+1,j$1(o,t,i,l.__n,void 0!==o.ownerSVGElement,null!=t.__h?[r]:null,u,null==r?k$1(t):r,t.__h),z(u,t),t.__e!=r&&b$1(t)));});}function w$1(n,l,u,i,t,r,o,f,s,a){var h,v,p,_,b,m,g,w=i&&i.__k||c$1,A=w.length;for(u.__k=[],h=0;h<l.length;h++)if(null!=(_=u.__k[h]=null==(_=l[h])||"boolean"==typeof _?null:"string"==typeof _||"number"==typeof _||"bigint"==typeof _?y$1(null,_,null,null,_):Array.isArray(_)?y$1(d$1,{children:_},null,null,null):_.__b>0?y$1(_.type,_.props,_.key,null,_.__v):_)){if(_.__=u,_.__b=u.__b+1,null===(p=w[h])||p&&_.key==p.key&&_.type===p.type)w[h]=void 0;else for(v=0;v<A;v++){if((p=w[v])&&_.key==p.key&&_.type===p.type){w[v]=void 0;break}p=null;}j$1(n,_,p=p||e$2,t,r,o,f,s,a),b=_.__e,(v=_.ref)&&p.ref!=v&&(g||(g=[]),p.ref&&g.push(p.ref,null,_),g.push(v,_.__c||b,_)),null!=b?(null==m&&(m=b),"function"==typeof _.type&&_.__k===p.__k?_.__d=s=x$1(_,s,n):s=P(n,_,p,w,b,s),"function"==typeof u.type&&(u.__d=s)):s&&p.__e==s&&s.parentNode!=n&&(s=k$1(p));}for(u.__e=m,h=A;h--;)null!=w[h]&&("function"==typeof u.type&&null!=w[h].__e&&w[h].__e==u.__d&&(u.__d=k$1(i,h+1)),N(w[h],w[h]));if(g)for(h=0;h<g.length;h++)M(g[h],g[++h],g[++h]);}function x$1(n,l,u){for(var i,t=n.__k,r=0;t&&r<t.length;r++)(i=t[r])&&(i.__=n,l="function"==typeof i.type?x$1(i,l,u):P(u,i,i,t,i.__e,l));return l}function P(n,l,u,i,t,r){var o,f,e;if(void 0!==l.__d)o=l.__d,l.__d=void 0;else if(null==u||t!=r||null==t.parentNode)n:if(null==r||r.parentNode!==n)n.appendChild(t),o=null;else {for(f=r,e=0;(f=f.nextSibling)&&e<i.length;e+=2)if(f==t)break n;n.insertBefore(t,r),o=r;}return void 0!==o?o:t.nextSibling}function C(n,l,u,i,t){var r;for(r in u)"children"===r||"key"===r||r in l||H(n,r,null,u[r],i);for(r in l)t&&"function"!=typeof l[r]||"children"===r||"key"===r||"value"===r||"checked"===r||u[r]===l[r]||H(n,r,l[r],u[r],i);}function $(n,l,u){"-"===l[0]?n.setProperty(l,u):n[l]=null==u?"":"number"!=typeof u||s.test(l)?u:u+"px";}function H(n,l,u,i,t){var r;n:if("style"===l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof i&&(n.style.cssText=i=""),i)for(l in i)u&&l in u||$(n.style,l,"");if(u)for(l in u)i&&u[l]===i[l]||$(n.style,l,u[l]);}else if("o"===l[0]&&"n"===l[1])r=l!==(l=l.replace(/Capture$/,"")),l=l.toLowerCase()in n?l.toLowerCase().slice(2):l.slice(2),n.l||(n.l={}),n.l[l+r]=u,u?i||n.addEventListener(l,r?T:I,r):n.removeEventListener(l,r?T:I,r);else if("dangerouslySetInnerHTML"!==l){if(t)l=l.replace(/xlink[H:h]/,"h").replace(/sName$/,"s");else if("href"!==l&&"list"!==l&&"form"!==l&&"tabIndex"!==l&&"download"!==l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null!=u&&(!1!==u||"a"===l[0]&&"r"===l[1])?n.setAttribute(l,u):n.removeAttribute(l));}}function I(n){this.l[n.type+!1](l$1.event?l$1.event(n):n);}function T(n){this.l[n.type+!0](l$1.event?l$1.event(n):n);}function j$1(n,u,i,t,r,o,f,e,c){var s,h,v,y,p,k,b,m,g,x,A,P=u.type;if(void 0!==u.constructor)return null;null!=i.__h&&(c=i.__h,e=u.__e=i.__e,u.__h=null,o=[e]),(s=l$1.__b)&&s(u);try{n:if("function"==typeof P){if(m=u.props,g=(s=P.contextType)&&t[s.__c],x=s?g?g.props.value:s.__:t,i.__c?b=(h=u.__c=i.__c).__=h.__E:("prototype"in P&&P.prototype.render?u.__c=h=new P(m,x):(u.__c=h=new _(m,x),h.constructor=P,h.render=O),g&&g.sub(h),h.props=m,h.state||(h.state={}),h.context=x,h.__n=t,v=h.__d=!0,h.__h=[]),null==h.__s&&(h.__s=h.state),null!=P.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=a$1({},h.__s)),a$1(h.__s,P.getDerivedStateFromProps(m,h.__s))),y=h.props,p=h.state,v)null==P.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else {if(null==P.getDerivedStateFromProps&&m!==y&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(m,x),!h.__e&&null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(m,h.__s,x)||u.__v===i.__v){h.props=m,h.state=h.__s,u.__v!==i.__v&&(h.__d=!1),h.__v=u,u.__e=i.__e,u.__k=i.__k,u.__k.forEach(function(n){n&&(n.__=u);}),h.__h.length&&f.push(h);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(m,h.__s,x),null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(y,p,k);});}h.context=x,h.props=m,h.state=h.__s,(s=l$1.__r)&&s(u),h.__d=!1,h.__v=u,h.__P=n,s=h.render(h.props,h.state,h.context),h.state=h.__s,null!=h.getChildContext&&(t=a$1(a$1({},t),h.getChildContext())),v||null==h.getSnapshotBeforeUpdate||(k=h.getSnapshotBeforeUpdate(y,p)),A=null!=s&&s.type===d$1&&null==s.key?s.props.children:s,w$1(n,Array.isArray(A)?A:[A],u,i,t,r,o,f,e,c),h.base=u.__e,u.__h=null,h.__h.length&&f.push(h),b&&(h.__E=h.__=null),h.__e=!1;}else null==o&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=L(i.__e,u,i,t,r,o,f,c);(s=l$1.diffed)&&s(u);}catch(n){u.__v=null,(c||null!=o)&&(u.__e=e,u.__h=!!c,o[o.indexOf(e)]=null),l$1.__e(n,u,i);}}function z(n,u){l$1.__c&&l$1.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u);});}catch(n){l$1.__e(n,u.__v);}});}function L(l,u,i,t,r,o,f,c){var s,a,v,y=i.props,p=u.props,d=u.type,_=0;if("svg"===d&&(r=!0),null!=o)for(;_<o.length;_++)if((s=o[_])&&"setAttribute"in s==!!d&&(d?s.localName===d:3===s.nodeType)){l=s,o[_]=null;break}if(null==l){if(null===d)return document.createTextNode(p);l=r?document.createElementNS("http://www.w3.org/2000/svg",d):document.createElement(d,p.is&&p),o=null,c=!1;}if(null===d)y===p||c&&l.data===p||(l.data=p);else {if(o=o&&n.call(l.childNodes),a=(y=i.props||e$2).dangerouslySetInnerHTML,v=p.dangerouslySetInnerHTML,!c){if(null!=o)for(y={},_=0;_<l.attributes.length;_++)y[l.attributes[_].name]=l.attributes[_].value;(v||a)&&(v&&(a&&v.__html==a.__html||v.__html===l.innerHTML)||(l.innerHTML=v&&v.__html||""));}if(C(l,p,y,r,c),v)u.__k=[];else if(_=u.props.children,w$1(l,Array.isArray(_)?_:[_],u,i,t,r&&"foreignObject"!==d,o,f,o?o[0]:i.__k&&k$1(i,0),c),null!=o)for(_=o.length;_--;)null!=o[_]&&h(o[_]);c||("value"in p&&void 0!==(_=p.value)&&(_!==y.value||_!==l.value||"progress"===d&&!_)&&H(l,"value",_,y.value,!1),"checked"in p&&void 0!==(_=p.checked)&&_!==l.checked&&H(l,"checked",_,y.checked,!1));}return l}function M(n,u,i){try{"function"==typeof n?n(u):n.current=u;}catch(n){l$1.__e(n,i);}}function N(n,u,i){var t,r;if(l$1.unmount&&l$1.unmount(n),(t=n.ref)&&(t.current&&t.current!==n.__e||M(t,null,u)),null!=(t=n.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount();}catch(n){l$1.__e(n,u);}t.base=t.__P=null;}if(t=n.__k)for(r=0;r<t.length;r++)t[r]&&N(t[r],u,"function"!=typeof n.type);i||null==n.__e||h(n.__e),n.__e=n.__d=void 0;}function O(n,l,u){return this.constructor(n,u)}function S(u,i,t){var r,o,f;l$1.__&&l$1.__(u,i),o=(r="function"==typeof t)?null:t&&t.__k||i.__k,f=[],j$1(i,u=(!r&&t||i).__k=v$1(d$1,null,[u]),o||e$2,e$2,void 0!==i.ownerSVGElement,!r&&t?[t]:o?null:i.firstChild?n.call(i.childNodes):null,f,!r&&t?t:o?o.__e:i.firstChild,r),z(f,u);}function D(n,l){var u={__c:l="__cC"+f$1++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var u,i;return this.getChildContext||(u=[],(i={})[l]=this,this.getChildContext=function(){return i},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(m$1);},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u.splice(u.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n=c$1.slice,l$1={__e:function(n,l){for(var u,i,t;l=l.__;)if((u=l.__c)&&!u.__)try{if((i=u.constructor)&&null!=i.getDerivedStateFromError&&(u.setState(i.getDerivedStateFromError(n)),t=u.__d),null!=u.componentDidCatch&&(u.componentDidCatch(n),t=u.__d),t)return u.__E=u}catch(l){n=l;}throw n}},u$1=0,_.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=a$1({},this.state),"function"==typeof n&&(n=n(a$1({},u),this.props)),n&&a$1(u,n),null!=n&&this.__v&&(l&&this.__h.push(l),m$1(this));},_.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),m$1(this));},_.prototype.render=d$1,t$1=[],r$1="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,g$1.__r=0,f$1=0;
 
   var o$1=0;function e$1(_,e,n,t,f){var l,s,u={};for(s in e)"ref"==s?l=e[s]:u[s]=e[s];var a={type:_,props:u,key:n,ref:l,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:--o$1,__source:t,__self:f};if("function"==typeof _&&(l=_.defaultProps))for(s in l)void 0===u[s]&&(u[s]=l[s]);return l$1.vnode&&l$1.vnode(a),a}
 
@@ -388,21 +420,6 @@ var drawChart = (function (exports) {
     [Symbol.iterator]: node_iterator
   };
 
-  function required(f) {
-    if (typeof f !== "function") throw new Error;
-    return f;
-  }
-
-  function constantZero() {
-    return 0;
-  }
-
-  function constant$1(x) {
-    return function() {
-      return x;
-    };
-  }
-
   function roundNode(node) {
     node.x0 = Math.round(node.x0);
     node.y0 = Math.round(node.y0);
@@ -423,333 +440,469 @@ var drawChart = (function (exports) {
     }
   }
 
-  function treemapSlice(parent, x0, y0, x1, y1) {
-    var nodes = parent.children,
-        node,
-        i = -1,
-        n = nodes.length,
-        k = parent.value && (y1 - y0) / parent.value;
-
-    while (++i < n) {
-      node = nodes[i], node.x0 = x0, node.x1 = x1;
-      node.y0 = y0, node.y1 = y0 += node.value * k;
-    }
-  }
-
-  var phi = (1 + Math.sqrt(5)) / 2;
-
-  function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
-    var rows = [],
-        nodes = parent.children,
-        row,
-        nodeValue,
-        i0 = 0,
-        i1 = 0,
-        n = nodes.length,
-        dx, dy,
-        value = parent.value,
-        sumValue,
-        minValue,
-        maxValue,
-        newRatio,
-        minRatio,
-        alpha,
-        beta;
-
-    while (i0 < n) {
-      dx = x1 - x0, dy = y1 - y0;
-
-      // Find the next non-empty node.
-      do sumValue = nodes[i1++].value; while (!sumValue && i1 < n);
-      minValue = maxValue = sumValue;
-      alpha = Math.max(dy / dx, dx / dy) / (value * ratio);
-      beta = sumValue * sumValue * alpha;
-      minRatio = Math.max(maxValue / beta, beta / minValue);
-
-      // Keep adding nodes while the aspect ratio maintains or improves.
-      for (; i1 < n; ++i1) {
-        sumValue += nodeValue = nodes[i1].value;
-        if (nodeValue < minValue) minValue = nodeValue;
-        if (nodeValue > maxValue) maxValue = nodeValue;
-        beta = sumValue * sumValue * alpha;
-        newRatio = Math.max(maxValue / beta, beta / minValue);
-        if (newRatio > minRatio) { sumValue -= nodeValue; break; }
-        minRatio = newRatio;
-      }
-
-      // Position and record the row orientation.
-      rows.push(row = {value: sumValue, dice: dx < dy, children: nodes.slice(i0, i1)});
-      if (row.dice) treemapDice(row, x0, y0, x1, value ? y0 += dy * sumValue / value : y1);
-      else treemapSlice(row, x0, y0, value ? x0 += dx * sumValue / value : x1, y1);
-      value -= sumValue, i0 = i1;
-    }
-
-    return rows;
-  }
-
-  var squarify = (function custom(ratio) {
-
-    function squarify(parent, x0, y0, x1, y1) {
-      squarifyRatio(ratio, parent, x0, y0, x1, y1);
-    }
-
-    squarify.ratio = function(x) {
-      return custom((x = +x) > 1 ? x : 1);
-    };
-
-    return squarify;
-  })(phi);
-
-  function treemap() {
-    var tile = squarify,
-        round = false,
-        dx = 1,
+  function partition() {
+    var dx = 1,
         dy = 1,
-        paddingStack = [0],
-        paddingInner = constantZero,
-        paddingTop = constantZero,
-        paddingRight = constantZero,
-        paddingBottom = constantZero,
-        paddingLeft = constantZero;
+        padding = 0,
+        round = false;
 
-    function treemap(root) {
+    function partition(root) {
+      var n = root.height + 1;
       root.x0 =
-      root.y0 = 0;
+      root.y0 = padding;
       root.x1 = dx;
-      root.y1 = dy;
-      root.eachBefore(positionNode);
-      paddingStack = [0];
+      root.y1 = dy / n;
+      root.eachBefore(positionNode(dy, n));
       if (round) root.eachBefore(roundNode);
       return root;
     }
 
-    function positionNode(node) {
-      var p = paddingStack[node.depth],
-          x0 = node.x0 + p,
-          y0 = node.y0 + p,
-          x1 = node.x1 - p,
-          y1 = node.y1 - p;
-      if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
-      if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-      node.x0 = x0;
-      node.y0 = y0;
-      node.x1 = x1;
-      node.y1 = y1;
-      if (node.children) {
-        p = paddingStack[node.depth + 1] = paddingInner(node) / 2;
-        x0 += paddingLeft(node) - p;
-        y0 += paddingTop(node) - p;
-        x1 -= paddingRight(node) - p;
-        y1 -= paddingBottom(node) - p;
+    function positionNode(dy, n) {
+      return function(node) {
+        if (node.children) {
+          treemapDice(node, node.x0, dy * (node.depth + 1) / n, node.x1, dy * (node.depth + 2) / n);
+        }
+        var x0 = node.x0,
+            y0 = node.y0,
+            x1 = node.x1 - padding,
+            y1 = node.y1 - padding;
         if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
         if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-        tile(node, x0, y0, x1, y1);
-      }
+        node.x0 = x0;
+        node.y0 = y0;
+        node.x1 = x1;
+        node.y1 = y1;
+      };
     }
 
-    treemap.round = function(x) {
-      return arguments.length ? (round = !!x, treemap) : round;
+    partition.round = function(x) {
+      return arguments.length ? (round = !!x, partition) : round;
     };
 
-    treemap.size = function(x) {
-      return arguments.length ? (dx = +x[0], dy = +x[1], treemap) : [dx, dy];
+    partition.size = function(x) {
+      return arguments.length ? (dx = +x[0], dy = +x[1], partition) : [dx, dy];
     };
 
-    treemap.tile = function(x) {
-      return arguments.length ? (tile = required(x), treemap) : tile;
+    partition.padding = function(x) {
+      return arguments.length ? (padding = +x, partition) : padding;
     };
 
-    treemap.padding = function(x) {
-      return arguments.length ? treemap.paddingInner(x).paddingOuter(x) : treemap.paddingInner();
-    };
-
-    treemap.paddingInner = function(x) {
-      return arguments.length ? (paddingInner = typeof x === "function" ? x : constant$1(+x), treemap) : paddingInner;
-    };
-
-    treemap.paddingOuter = function(x) {
-      return arguments.length ? treemap.paddingTop(x).paddingRight(x).paddingBottom(x).paddingLeft(x) : treemap.paddingTop();
-    };
-
-    treemap.paddingTop = function(x) {
-      return arguments.length ? (paddingTop = typeof x === "function" ? x : constant$1(+x), treemap) : paddingTop;
-    };
-
-    treemap.paddingRight = function(x) {
-      return arguments.length ? (paddingRight = typeof x === "function" ? x : constant$1(+x), treemap) : paddingRight;
-    };
-
-    treemap.paddingBottom = function(x) {
-      return arguments.length ? (paddingBottom = typeof x === "function" ? x : constant$1(+x), treemap) : paddingBottom;
-    };
-
-    treemap.paddingLeft = function(x) {
-      return arguments.length ? (paddingLeft = typeof x === "function" ? x : constant$1(+x), treemap) : paddingLeft;
-    };
-
-    return treemap;
+    return partition;
   }
 
-  var treemapResquarify = (function custom(ratio) {
+  const pi$1 = Math.PI,
+      tau$1 = 2 * pi$1,
+      epsilon$1 = 1e-6,
+      tauEpsilon = tau$1 - epsilon$1;
 
-    function resquarify(parent, x0, y0, x1, y1) {
-      if ((rows = parent._squarify) && (rows.ratio === ratio)) {
-        var rows,
-            row,
-            nodes,
-            i,
-            j = -1,
-            n,
-            m = rows.length,
-            value = parent.value;
+  function Path() {
+    this._x0 = this._y0 = // start of current subpath
+    this._x1 = this._y1 = null; // end of current subpath
+    this._ = "";
+  }
 
-        while (++j < m) {
-          row = rows[j], nodes = row.children;
-          for (i = row.value = 0, n = nodes.length; i < n; ++i) row.value += nodes[i].value;
-          if (row.dice) treemapDice(row, x0, y0, x1, value ? y0 += (y1 - y0) * row.value / value : y1);
-          else treemapSlice(row, x0, y0, value ? x0 += (x1 - x0) * row.value / value : x1, y1);
-          value -= row.value;
+  function path() {
+    return new Path;
+  }
+
+  Path.prototype = path.prototype = {
+    constructor: Path,
+    moveTo: function(x, y) {
+      this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y);
+    },
+    closePath: function() {
+      if (this._x1 !== null) {
+        this._x1 = this._x0, this._y1 = this._y0;
+        this._ += "Z";
+      }
+    },
+    lineTo: function(x, y) {
+      this._ += "L" + (this._x1 = +x) + "," + (this._y1 = +y);
+    },
+    quadraticCurveTo: function(x1, y1, x, y) {
+      this._ += "Q" + (+x1) + "," + (+y1) + "," + (this._x1 = +x) + "," + (this._y1 = +y);
+    },
+    bezierCurveTo: function(x1, y1, x2, y2, x, y) {
+      this._ += "C" + (+x1) + "," + (+y1) + "," + (+x2) + "," + (+y2) + "," + (this._x1 = +x) + "," + (this._y1 = +y);
+    },
+    arcTo: function(x1, y1, x2, y2, r) {
+      x1 = +x1, y1 = +y1, x2 = +x2, y2 = +y2, r = +r;
+      var x0 = this._x1,
+          y0 = this._y1,
+          x21 = x2 - x1,
+          y21 = y2 - y1,
+          x01 = x0 - x1,
+          y01 = y0 - y1,
+          l01_2 = x01 * x01 + y01 * y01;
+
+      // Is the radius negative? Error.
+      if (r < 0) throw new Error("negative radius: " + r);
+
+      // Is this path empty? Move to (x1,y1).
+      if (this._x1 === null) {
+        this._ += "M" + (this._x1 = x1) + "," + (this._y1 = y1);
+      }
+
+      // Or, is (x1,y1) coincident with (x0,y0)? Do nothing.
+      else if (!(l01_2 > epsilon$1));
+
+      // Or, are (x0,y0), (x1,y1) and (x2,y2) collinear?
+      // Equivalently, is (x1,y1) coincident with (x2,y2)?
+      // Or, is the radius zero? Line to (x1,y1).
+      else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon$1) || !r) {
+        this._ += "L" + (this._x1 = x1) + "," + (this._y1 = y1);
+      }
+
+      // Otherwise, draw an arc!
+      else {
+        var x20 = x2 - x0,
+            y20 = y2 - y0,
+            l21_2 = x21 * x21 + y21 * y21,
+            l20_2 = x20 * x20 + y20 * y20,
+            l21 = Math.sqrt(l21_2),
+            l01 = Math.sqrt(l01_2),
+            l = r * Math.tan((pi$1 - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2),
+            t01 = l / l01,
+            t21 = l / l21;
+
+        // If the start tangent is not coincident with (x0,y0), line to.
+        if (Math.abs(t01 - 1) > epsilon$1) {
+          this._ += "L" + (x1 + t01 * x01) + "," + (y1 + t01 * y01);
         }
-      } else {
-        parent._squarify = rows = squarifyRatio(ratio, parent, x0, y0, x1, y1);
-        rows.ratio = ratio;
+
+        this._ += "A" + r + "," + r + ",0,0," + (+(y01 * x20 > x01 * y20)) + "," + (this._x1 = x1 + t21 * x21) + "," + (this._y1 = y1 + t21 * y21);
       }
+    },
+    arc: function(x, y, r, a0, a1, ccw) {
+      x = +x, y = +y, r = +r, ccw = !!ccw;
+      var dx = r * Math.cos(a0),
+          dy = r * Math.sin(a0),
+          x0 = x + dx,
+          y0 = y + dy,
+          cw = 1 ^ ccw,
+          da = ccw ? a0 - a1 : a1 - a0;
+
+      // Is the radius negative? Error.
+      if (r < 0) throw new Error("negative radius: " + r);
+
+      // Is this path empty? Move to (x0,y0).
+      if (this._x1 === null) {
+        this._ += "M" + x0 + "," + y0;
+      }
+
+      // Or, is (x0,y0) not coincident with the previous point? Line to (x0,y0).
+      else if (Math.abs(this._x1 - x0) > epsilon$1 || Math.abs(this._y1 - y0) > epsilon$1) {
+        this._ += "L" + x0 + "," + y0;
+      }
+
+      // Is this arc empty? We’re done.
+      if (!r) return;
+
+      // Does the angle go the wrong way? Flip the direction.
+      if (da < 0) da = da % tau$1 + tau$1;
+
+      // Is this a complete circle? Draw two arcs to complete the circle.
+      if (da > tauEpsilon) {
+        this._ += "A" + r + "," + r + ",0,1," + cw + "," + (x - dx) + "," + (y - dy) + "A" + r + "," + r + ",0,1," + cw + "," + (this._x1 = x0) + "," + (this._y1 = y0);
+      }
+
+      // Is this arc non-empty? Draw an arc!
+      else if (da > epsilon$1) {
+        this._ += "A" + r + "," + r + ",0," + (+(da >= pi$1)) + "," + cw + "," + (this._x1 = x + r * Math.cos(a1)) + "," + (this._y1 = y + r * Math.sin(a1));
+      }
+    },
+    rect: function(x, y, w, h) {
+      this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y) + "h" + (+w) + "v" + (+h) + "h" + (-w) + "Z";
+    },
+    toString: function() {
+      return this._;
+    }
+  };
+
+  function constant$1(x) {
+    return function constant() {
+      return x;
+    };
+  }
+
+  const abs = Math.abs;
+  const atan2 = Math.atan2;
+  const cos = Math.cos;
+  const max = Math.max;
+  const min = Math.min;
+  const sin = Math.sin;
+  const sqrt$1 = Math.sqrt;
+
+  const epsilon = 1e-12;
+  const pi = Math.PI;
+  const halfPi = pi / 2;
+  const tau = 2 * pi;
+
+  function acos(x) {
+    return x > 1 ? 0 : x < -1 ? pi : Math.acos(x);
+  }
+
+  function asin(x) {
+    return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
+  }
+
+  function arcInnerRadius(d) {
+    return d.innerRadius;
+  }
+
+  function arcOuterRadius(d) {
+    return d.outerRadius;
+  }
+
+  function arcStartAngle(d) {
+    return d.startAngle;
+  }
+
+  function arcEndAngle(d) {
+    return d.endAngle;
+  }
+
+  function arcPadAngle(d) {
+    return d && d.padAngle; // Note: optional!
+  }
+
+  function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
+    var x10 = x1 - x0, y10 = y1 - y0,
+        x32 = x3 - x2, y32 = y3 - y2,
+        t = y32 * x10 - x32 * y10;
+    if (t * t < epsilon) return;
+    t = (x32 * (y0 - y2) - y32 * (x0 - x2)) / t;
+    return [x0 + t * x10, y0 + t * y10];
+  }
+
+  // Compute perpendicular offset line of length rc.
+  // http://mathworld.wolfram.com/Circle-LineIntersection.html
+  function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
+    var x01 = x0 - x1,
+        y01 = y0 - y1,
+        lo = (cw ? rc : -rc) / sqrt$1(x01 * x01 + y01 * y01),
+        ox = lo * y01,
+        oy = -lo * x01,
+        x11 = x0 + ox,
+        y11 = y0 + oy,
+        x10 = x1 + ox,
+        y10 = y1 + oy,
+        x00 = (x11 + x10) / 2,
+        y00 = (y11 + y10) / 2,
+        dx = x10 - x11,
+        dy = y10 - y11,
+        d2 = dx * dx + dy * dy,
+        r = r1 - rc,
+        D = x11 * y10 - x10 * y11,
+        d = (dy < 0 ? -1 : 1) * sqrt$1(max(0, r * r * d2 - D * D)),
+        cx0 = (D * dy - dx * d) / d2,
+        cy0 = (-D * dx - dy * d) / d2,
+        cx1 = (D * dy + dx * d) / d2,
+        cy1 = (-D * dx + dy * d) / d2,
+        dx0 = cx0 - x00,
+        dy0 = cy0 - y00,
+        dx1 = cx1 - x00,
+        dy1 = cy1 - y00;
+
+    // Pick the closer of the two intersection points.
+    // TODO Is there a faster way to determine which intersection to use?
+    if (dx0 * dx0 + dy0 * dy0 > dx1 * dx1 + dy1 * dy1) cx0 = cx1, cy0 = cy1;
+
+    return {
+      cx: cx0,
+      cy: cy0,
+      x01: -ox,
+      y01: -oy,
+      x11: cx0 * (r1 / r - 1),
+      y11: cy0 * (r1 / r - 1)
+    };
+  }
+
+  function d3arc() {
+    var innerRadius = arcInnerRadius,
+        outerRadius = arcOuterRadius,
+        cornerRadius = constant$1(0),
+        padRadius = null,
+        startAngle = arcStartAngle,
+        endAngle = arcEndAngle,
+        padAngle = arcPadAngle,
+        context = null;
+
+    function arc() {
+      var buffer,
+          r,
+          r0 = +innerRadius.apply(this, arguments),
+          r1 = +outerRadius.apply(this, arguments),
+          a0 = startAngle.apply(this, arguments) - halfPi,
+          a1 = endAngle.apply(this, arguments) - halfPi,
+          da = abs(a1 - a0),
+          cw = a1 > a0;
+
+      if (!context) context = buffer = path();
+
+      // Ensure that the outer radius is always larger than the inner radius.
+      if (r1 < r0) r = r1, r1 = r0, r0 = r;
+
+      // Is it a point?
+      if (!(r1 > epsilon)) context.moveTo(0, 0);
+
+      // Or is it a circle or annulus?
+      else if (da > tau - epsilon) {
+        context.moveTo(r1 * cos(a0), r1 * sin(a0));
+        context.arc(0, 0, r1, a0, a1, !cw);
+        if (r0 > epsilon) {
+          context.moveTo(r0 * cos(a1), r0 * sin(a1));
+          context.arc(0, 0, r0, a1, a0, cw);
+        }
+      }
+
+      // Or is it a circular or annular sector?
+      else {
+        var a01 = a0,
+            a11 = a1,
+            a00 = a0,
+            a10 = a1,
+            da0 = da,
+            da1 = da,
+            ap = padAngle.apply(this, arguments) / 2,
+            rp = (ap > epsilon) && (padRadius ? +padRadius.apply(this, arguments) : sqrt$1(r0 * r0 + r1 * r1)),
+            rc = min(abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)),
+            rc0 = rc,
+            rc1 = rc,
+            t0,
+            t1;
+
+        // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
+        if (rp > epsilon) {
+          var p0 = asin(rp / r0 * sin(ap)),
+              p1 = asin(rp / r1 * sin(ap));
+          if ((da0 -= p0 * 2) > epsilon) p0 *= (cw ? 1 : -1), a00 += p0, a10 -= p0;
+          else da0 = 0, a00 = a10 = (a0 + a1) / 2;
+          if ((da1 -= p1 * 2) > epsilon) p1 *= (cw ? 1 : -1), a01 += p1, a11 -= p1;
+          else da1 = 0, a01 = a11 = (a0 + a1) / 2;
+        }
+
+        var x01 = r1 * cos(a01),
+            y01 = r1 * sin(a01),
+            x10 = r0 * cos(a10),
+            y10 = r0 * sin(a10);
+
+        // Apply rounded corners?
+        if (rc > epsilon) {
+          var x11 = r1 * cos(a11),
+              y11 = r1 * sin(a11),
+              x00 = r0 * cos(a00),
+              y00 = r0 * sin(a00),
+              oc;
+
+          // Restrict the corner radius according to the sector angle.
+          if (da < pi && (oc = intersect(x01, y01, x00, y00, x11, y11, x10, y10))) {
+            var ax = x01 - oc[0],
+                ay = y01 - oc[1],
+                bx = x11 - oc[0],
+                by = y11 - oc[1],
+                kc = 1 / sin(acos((ax * bx + ay * by) / (sqrt$1(ax * ax + ay * ay) * sqrt$1(bx * bx + by * by))) / 2),
+                lc = sqrt$1(oc[0] * oc[0] + oc[1] * oc[1]);
+            rc0 = min(rc, (r0 - lc) / (kc - 1));
+            rc1 = min(rc, (r1 - lc) / (kc + 1));
+          }
+        }
+
+        // Is the sector collapsed to a line?
+        if (!(da1 > epsilon)) context.moveTo(x01, y01);
+
+        // Does the sector’s outer ring have rounded corners?
+        else if (rc1 > epsilon) {
+          t0 = cornerTangents(x00, y00, x01, y01, r1, rc1, cw);
+          t1 = cornerTangents(x11, y11, x10, y10, r1, rc1, cw);
+
+          context.moveTo(t0.cx + t0.x01, t0.cy + t0.y01);
+
+          // Have the corners merged?
+          if (rc1 < rc) context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
+
+          // Otherwise, draw the two corners and the ring.
+          else {
+            context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
+            context.arc(0, 0, r1, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), !cw);
+            context.arc(t1.cx, t1.cy, rc1, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
+          }
+        }
+
+        // Or is the outer ring just a circular arc?
+        else context.moveTo(x01, y01), context.arc(0, 0, r1, a01, a11, !cw);
+
+        // Is there no inner ring, and it’s a circular sector?
+        // Or perhaps it’s an annular sector collapsed due to padding?
+        if (!(r0 > epsilon) || !(da0 > epsilon)) context.lineTo(x10, y10);
+
+        // Does the sector’s inner ring (or point) have rounded corners?
+        else if (rc0 > epsilon) {
+          t0 = cornerTangents(x10, y10, x11, y11, r0, -rc0, cw);
+          t1 = cornerTangents(x01, y01, x00, y00, r0, -rc0, cw);
+
+          context.lineTo(t0.cx + t0.x01, t0.cy + t0.y01);
+
+          // Have the corners merged?
+          if (rc0 < rc) context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
+
+          // Otherwise, draw the two corners and the ring.
+          else {
+            context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
+            context.arc(0, 0, r0, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), cw);
+            context.arc(t1.cx, t1.cy, rc0, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
+          }
+        }
+
+        // Or is the inner ring just a circular arc?
+        else context.arc(0, 0, r0, a10, a00, cw);
+      }
+
+      context.closePath();
+
+      if (buffer) return context = null, buffer + "" || null;
     }
 
-    resquarify.ratio = function(x) {
-      return custom((x = +x) > 1 ? x : 1);
+    arc.centroid = function() {
+      var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
+          a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - pi / 2;
+      return [cos(a) * r, sin(a) * r];
     };
 
-    return resquarify;
-  })(phi);
+    arc.innerRadius = function(_) {
+      return arguments.length ? (innerRadius = typeof _ === "function" ? _ : constant$1(+_), arc) : innerRadius;
+    };
 
-  const isModuleTree = (mod) => "children" in mod;
+    arc.outerRadius = function(_) {
+      return arguments.length ? (outerRadius = typeof _ === "function" ? _ : constant$1(+_), arc) : outerRadius;
+    };
 
-  let count = 0;
-  class Id {
-      constructor(id) {
-          this._id = id;
-          const url = new URL(window.location.href);
-          url.hash = id;
-          this._href = url.toString();
-      }
-      get id() {
-          return this._id;
-      }
-      get href() {
-          return this._href;
-      }
-      toString() {
-          return `url(${this.href})`;
-      }
+    arc.cornerRadius = function(_) {
+      return arguments.length ? (cornerRadius = typeof _ === "function" ? _ : constant$1(+_), arc) : cornerRadius;
+    };
+
+    arc.padRadius = function(_) {
+      return arguments.length ? (padRadius = _ == null ? null : typeof _ === "function" ? _ : constant$1(+_), arc) : padRadius;
+    };
+
+    arc.startAngle = function(_) {
+      return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant$1(+_), arc) : startAngle;
+    };
+
+    arc.endAngle = function(_) {
+      return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant$1(+_), arc) : endAngle;
+    };
+
+    arc.padAngle = function(_) {
+      return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant$1(+_), arc) : padAngle;
+    };
+
+    arc.context = function(_) {
+      return arguments.length ? ((context = _ == null ? null : _), arc) : context;
+    };
+
+    return arc;
   }
-  function generateUniqueId(name) {
-      count += 1;
-      const id = ["O", name, count].filter(Boolean).join("-");
-      return new Id(id);
-  }
-
-  const LABELS = {
-      renderedLength: "Rendered",
-      gzipLength: "Gzip",
-      brotliLength: "Brotli",
-  };
-  const getAvailableSizeOptions = (options) => {
-      const availableSizeProperties = ["renderedLength"];
-      if (options.gzip) {
-          availableSizeProperties.push("gzipLength");
-      }
-      if (options.brotli) {
-          availableSizeProperties.push("brotliLength");
-      }
-      return availableSizeProperties;
-  };
-
-  var t,u,r,o=0,i=[],c=l$1.__b,f=l$1.__r,e=l$1.diffed,a=l$1.__c,v=l$1.unmount;function m(t,r){l$1.__h&&l$1.__h(u,t,o||r),o=0;var i=u.__H||(u.__H={__:[],__h:[]});return t>=i.__.length&&i.__.push({}),i.__[t]}function l(n){return o=1,p(w,n)}function p(n,r,o){var i=m(t++,2);return i.t=n,i.__c||(i.__=[o?o(r):w(void 0,r),function(n){var t=i.t(i.__[0],n);i.__[0]!==t&&(i.__=[t,i.__[1]],i.__c.setState({}));}],i.__c=u),i.__}function y(r,o){var i=m(t++,3);!l$1.__s&&k(i.__H,o)&&(i.__=r,i.__H=o,u.__H.__h.push(i));}function h(r,o){var i=m(t++,4);!l$1.__s&&k(i.__H,o)&&(i.__=r,i.__H=o,u.__h.push(i));}function s(n){return o=5,d(function(){return {current:n}},[])}function d(n,u){var r=m(t++,7);return k(r.__H,u)&&(r.__=n(),r.__H=u,r.__h=n),r.__}function F(n){var r=u.context[n.__c],o=m(t++,9);return o.c=n,r?(null==o.__&&(o.__=!0,r.sub(u)),r.props.value):n.__}function x(){var t;for(i.sort(function(n,t){return n.__v.__b-t.__v.__b});t=i.pop();)if(t.__P)try{t.__H.__h.forEach(g),t.__H.__h.forEach(j),t.__H.__h=[];}catch(u){t.__H.__h=[],l$1.__e(u,t.__v);}}l$1.__b=function(n){u=null,c&&c(n);},l$1.__r=function(n){f&&f(n),t=0;var r=(u=n.__c).__H;r&&(r.__h.forEach(g),r.__h.forEach(j),r.__h=[]);},l$1.diffed=function(t){e&&e(t);var o=t.__c;o&&o.__H&&o.__H.__h.length&&(1!==i.push(o)&&r===l$1.requestAnimationFrame||((r=l$1.requestAnimationFrame)||function(n){var t,u=function(){clearTimeout(r),b&&cancelAnimationFrame(t),setTimeout(n);},r=setTimeout(u,100);b&&(t=requestAnimationFrame(u));})(x)),u=null;},l$1.__c=function(t,u){u.some(function(t){try{t.__h.forEach(g),t.__h=t.__h.filter(function(n){return !n.__||j(n)});}catch(r){u.some(function(n){n.__h&&(n.__h=[]);}),u=[],l$1.__e(r,t.__v);}}),a&&a(t,u);},l$1.unmount=function(t){v&&v(t);var u,r=t.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{g(n);}catch(n){u=n;}}),u&&l$1.__e(u,r.__v));};var b="function"==typeof requestAnimationFrame;function g(n){var t=u,r=n.__c;"function"==typeof r&&(n.__c=void 0,r()),u=t;}function j(n){var t=u;n.__c=n.__(),u=t;}function k(n,t){return !n||n.length!==t.length||t.some(function(t,u){return t!==n[u]})}function w(n,t){return "function"==typeof t?t(n):t}
-
-  const SideBar = ({ availableSizeProperties, sizeProperty, setSizeProperty, onExcludeChange, onIncludeChange, }) => {
-      const [includeValue, setIncludeValue] = l("");
-      const [excludeValue, setExcludeValue] = l("");
-      const handleSizePropertyChange = (sizeProp) => () => {
-          if (sizeProp !== sizeProperty) {
-              setSizeProperty(sizeProp);
-          }
-      };
-      const handleIncludeChange = (event) => {
-          const value = event.currentTarget.value;
-          setIncludeValue(value);
-          onIncludeChange(value);
-      };
-      const handleExcludeChange = (event) => {
-          const value = event.currentTarget.value;
-          setExcludeValue(value);
-          onExcludeChange(value);
-      };
-      return (e$1("aside", Object.assign({ className: "sidebar" }, { children: [e$1("div", Object.assign({ className: "size-selectors" }, { children: availableSizeProperties.length > 1 &&
-                      availableSizeProperties.map((sizeProp) => {
-                          const id = `selector-${sizeProp}`;
-                          return (e$1("div", Object.assign({ className: "size-selector" }, { children: [e$1("input", { type: "radio", id: id, checked: sizeProp === sizeProperty, onChange: handleSizePropertyChange(sizeProp) }, void 0), e$1("label", Object.assign({ htmlFor: id }, { children: LABELS[sizeProp] }), void 0)] }), sizeProp));
-                      }) }), void 0), e$1("div", Object.assign({ className: "module-filters" }, { children: [e$1("div", Object.assign({ className: "module-filter" }, { children: [e$1("label", Object.assign({ htmlFor: "module-filter-exclude" }, { children: "Exclude" }), void 0), e$1("input", { type: "text", id: "module-filter-exclude", value: excludeValue, onInput: handleExcludeChange }, void 0)] }), void 0), e$1("div", Object.assign({ className: "module-filter" }, { children: [e$1("label", Object.assign({ htmlFor: "module-filter-include" }, { children: "Include" }), void 0), e$1("input", { type: "text", id: "module-filter-include", value: includeValue, onInput: handleIncludeChange }, void 0)] }), void 0)] }), void 0)] }), void 0));
-  };
-
-  const throttleFilter = (callback, limit) => {
-      let waiting = false;
-      return (val) => {
-          if (!waiting) {
-              callback(val);
-              waiting = true;
-              setTimeout(() => {
-                  waiting = false;
-              }, limit);
-          }
-      };
-  };
-  const useFilter = () => {
-      const [includeFilter, setIncludeFilter] = l("");
-      const [excludeFilter, setExcludeFilter] = l("");
-      const setIncludeFilterTrottled = d(() => throttleFilter(setIncludeFilter, 200), []);
-      const setExcludeFilterTrottled = d(() => throttleFilter(setExcludeFilter, 200), []);
-      const isModuleIncluded = d(() => {
-          if (includeFilter === "") {
-              return () => true;
-          }
-          try {
-              const re = new RegExp(includeFilter);
-              return ({ id }) => re.test(id);
-          }
-          catch (err) {
-              return () => false;
-          }
-      }, [includeFilter]);
-      const isModuleExcluded = d(() => {
-          if (excludeFilter === "") {
-              return () => false;
-          }
-          try {
-              const re = new RegExp(excludeFilter);
-              return ({ id }) => re.test(id);
-          }
-          catch (err) {
-              return () => false;
-          }
-      }, [excludeFilter]);
-      const isDefaultInclude = includeFilter === "";
-      const getModuleFilterMultiplier = d(() => {
-          return (data) => {
-              if (isDefaultInclude) {
-                  return isModuleExcluded(data) ? 0 : 1;
-              }
-              return isModuleExcluded(data) && !isModuleIncluded(data) ? 0 : 1;
-          };
-      }, [isDefaultInclude, isModuleExcluded, isModuleIncluded]);
-      return {
-          getModuleFilterMultiplier,
-          includeFilter,
-          excludeFilter,
-          setExcludeFilter: setExcludeFilterTrottled,
-          setIncludeFilter: setIncludeFilterTrottled,
-      };
-  };
 
   function ascending(a, b) {
     return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
@@ -807,78 +960,6 @@ var drawChart = (function (exports) {
   bisector(number$1).center;
   var bisect = bisectRight;
 
-  class InternMap extends Map {
-    constructor(entries, key = keyof) {
-      super();
-      Object.defineProperties(this, {_intern: {value: new Map()}, _key: {value: key}});
-      if (entries != null) for (const [key, value] of entries) this.set(key, value);
-    }
-    get(key) {
-      return super.get(intern_get(this, key));
-    }
-    has(key) {
-      return super.has(intern_get(this, key));
-    }
-    set(key, value) {
-      return super.set(intern_set(this, key), value);
-    }
-    delete(key) {
-      return super.delete(intern_delete(this, key));
-    }
-  }
-
-  function intern_get({_intern, _key}, value) {
-    const key = _key(value);
-    return _intern.has(key) ? _intern.get(key) : value;
-  }
-
-  function intern_set({_intern, _key}, value) {
-    const key = _key(value);
-    if (_intern.has(key)) return _intern.get(key);
-    _intern.set(key, value);
-    return value;
-  }
-
-  function intern_delete({_intern, _key}, value) {
-    const key = _key(value);
-    if (_intern.has(key)) {
-      value = _intern.get(key);
-      _intern.delete(key);
-    }
-    return value;
-  }
-
-  function keyof(value) {
-    return value !== null && typeof value === "object" ? value.valueOf() : value;
-  }
-
-  function identity$2(x) {
-    return x;
-  }
-
-  function group(values, ...keys) {
-    return nest(values, identity$2, identity$2, keys);
-  }
-
-  function nest(values, map, reduce, keys) {
-    return (function regroup(values, i) {
-      if (i >= keys.length) return reduce(values);
-      const groups = new InternMap();
-      const keyof = keys[i++];
-      let index = -1;
-      for (const value of values) {
-        const key = keyof(value, ++index, values);
-        const group = groups.get(key);
-        if (group) group.push(value);
-        else groups.set(key, [value]);
-      }
-      for (const [key, values] of groups) {
-        groups.set(key, regroup(values, i));
-      }
-      return map(groups);
-    })(values, 0);
-  }
-
   var e10 = Math.sqrt(50),
       e5 = Math.sqrt(10),
       e2 = Math.sqrt(2);
@@ -934,421 +1015,11 @@ var drawChart = (function (exports) {
     return stop < start ? -step1 : step1;
   }
 
-  const TOP_PADDING = 20;
-  const PADDING = 2;
-
-  const Node = ({ node, onMouseOver, onClick, selected }) => {
-      const { getModuleColor } = F(StaticContext);
-      const { backgroundColor, fontColor } = getModuleColor(node);
-      const { x0, x1, y1, y0, data, children = null } = node;
-      const textRef = s(null);
-      const textRectRef = s();
-      const width = x1 - x0;
-      const height = y1 - y0;
-      const textProps = {
-          "font-size": "0.7em",
-          "dominant-baseline": "middle",
-          "text-anchor": "middle",
-          x: width / 2,
-      };
-      if (children != null) {
-          textProps.y = (TOP_PADDING + PADDING) / 2;
-      }
-      else {
-          textProps.y = height / 2;
-      }
-      h(() => {
-          if (width == 0 || height == 0 || !textRef.current) {
-              return;
-          }
-          if (textRectRef.current == null) {
-              textRectRef.current = textRef.current.getBoundingClientRect();
-          }
-          let scale = 1;
-          if (children != null) {
-              scale = Math.min((width * 0.9) / textRectRef.current.width, Math.min(height, TOP_PADDING + PADDING) / textRectRef.current.height);
-              scale = Math.min(1, scale);
-              textRef.current.setAttribute("y", String(Math.min(TOP_PADDING + PADDING, height) / 2 / scale));
-              textRef.current.setAttribute("x", String(width / 2 / scale));
-          }
-          else {
-              scale = Math.min((width * 0.9) / textRectRef.current.width, (height * 0.9) / textRectRef.current.height);
-              scale = Math.min(1, scale);
-              textRef.current.setAttribute("y", String(height / 2 / scale));
-              textRef.current.setAttribute("x", String(width / 2 / scale));
-          }
-          textRef.current.setAttribute("transform", `scale(${scale.toFixed(2)})`);
-      }, [children, height, width]);
-      if (width == 0 || height == 0) {
-          return null;
-      }
-      return (e$1("g", Object.assign({ className: "node", transform: `translate(${x0},${y0})`, onClick: (event) => {
-              event.stopPropagation();
-              onClick(node);
-          }, onMouseOver: (event) => {
-              event.stopPropagation();
-              onMouseOver(node);
-          } }, { children: [e$1("rect", { fill: backgroundColor, rx: 2, ry: 2, width: x1 - x0, height: y1 - y0, stroke: selected ? "#fff" : undefined, "stroke-width": selected ? 2 : undefined }, void 0), e$1("text", Object.assign({ ref: textRef, fill: fontColor, onClick: (event) => {
-                      var _a;
-                      if (((_a = window.getSelection()) === null || _a === void 0 ? void 0 : _a.toString()) !== "") {
-                          event.stopPropagation();
-                      }
-                  } }, textProps, { children: data.name }), void 0)] }), void 0));
-  };
-
-  const TreeMap = ({ root, onNodeHover, selectedNode, onNodeClick }) => {
-      const { width, height, getModuleIds } = F(StaticContext);
-      console.time("layering");
-      // this will make groups by height
-      const nestedData = d(() => {
-          const nestedDataMap = group(root.descendants(), (d) => d.height);
-          const nestedData = Array.from(nestedDataMap, ([key, values]) => ({
-              key,
-              values,
-          }));
-          nestedData.sort((a, b) => b.key - a.key);
-          return nestedData;
-      }, [root]);
-      console.timeEnd("layering");
-      return (e$1("svg", Object.assign({ xmlns: "http://www.w3.org/2000/svg", viewBox: `0 0 ${width} ${height}` }, { children: nestedData.map(({ key, values }) => {
-              return (e$1("g", Object.assign({ className: "layer" }, { children: values.map((node) => {
-                      return (e$1(Node, { node: node, onMouseOver: onNodeHover, selected: selectedNode === node, onClick: onNodeClick }, getModuleIds(node.data).nodeUid.id));
-                  }) }), key));
-          }) }), void 0));
-  };
-
-  var bytes$1 = {exports: {}};
-
-  /*!
-   * bytes
-   * Copyright(c) 2012-2014 TJ Holowaychuk
-   * Copyright(c) 2015 Jed Watson
-   * MIT Licensed
-   */
-
-  /**
-   * Module exports.
-   * @public
-   */
-
-  bytes$1.exports = bytes;
-  var format_1 = bytes$1.exports.format = format$1;
-  bytes$1.exports.parse = parse;
-
-  /**
-   * Module variables.
-   * @private
-   */
-
-  var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
-
-  var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
-
-  var map$1 = {
-    b:  1,
-    kb: 1 << 10,
-    mb: 1 << 20,
-    gb: 1 << 30,
-    tb: Math.pow(1024, 4),
-    pb: Math.pow(1024, 5),
-  };
-
-  var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
-
-  /**
-   * Convert the given value in bytes into a string or parse to string to an integer in bytes.
-   *
-   * @param {string|number} value
-   * @param {{
-   *  case: [string],
-   *  decimalPlaces: [number]
-   *  fixedDecimals: [boolean]
-   *  thousandsSeparator: [string]
-   *  unitSeparator: [string]
-   *  }} [options] bytes options.
-   *
-   * @returns {string|number|null}
-   */
-
-  function bytes(value, options) {
-    if (typeof value === 'string') {
-      return parse(value);
-    }
-
-    if (typeof value === 'number') {
-      return format$1(value, options);
-    }
-
-    return null;
-  }
-
-  /**
-   * Format the given value in bytes into a string.
-   *
-   * If the value is negative, it is kept as such. If it is a float,
-   * it is rounded.
-   *
-   * @param {number} value
-   * @param {object} [options]
-   * @param {number} [options.decimalPlaces=2]
-   * @param {number} [options.fixedDecimals=false]
-   * @param {string} [options.thousandsSeparator=]
-   * @param {string} [options.unit=]
-   * @param {string} [options.unitSeparator=]
-   *
-   * @returns {string|null}
-   * @public
-   */
-
-  function format$1(value, options) {
-    if (!Number.isFinite(value)) {
-      return null;
-    }
-
-    var mag = Math.abs(value);
-    var thousandsSeparator = (options && options.thousandsSeparator) || '';
-    var unitSeparator = (options && options.unitSeparator) || '';
-    var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
-    var fixedDecimals = Boolean(options && options.fixedDecimals);
-    var unit = (options && options.unit) || '';
-
-    if (!unit || !map$1[unit.toLowerCase()]) {
-      if (mag >= map$1.pb) {
-        unit = 'PB';
-      } else if (mag >= map$1.tb) {
-        unit = 'TB';
-      } else if (mag >= map$1.gb) {
-        unit = 'GB';
-      } else if (mag >= map$1.mb) {
-        unit = 'MB';
-      } else if (mag >= map$1.kb) {
-        unit = 'KB';
-      } else {
-        unit = 'B';
-      }
-    }
-
-    var val = value / map$1[unit.toLowerCase()];
-    var str = val.toFixed(decimalPlaces);
-
-    if (!fixedDecimals) {
-      str = str.replace(formatDecimalsRegExp, '$1');
-    }
-
-    if (thousandsSeparator) {
-      str = str.split('.').map(function (s, i) {
-        return i === 0
-          ? s.replace(formatThousandsRegExp, thousandsSeparator)
-          : s
-      }).join('.');
-    }
-
-    return str + unitSeparator + unit;
-  }
-
-  /**
-   * Parse the string value into an integer in bytes.
-   *
-   * If no unit is given, it is assumed the value is in bytes.
-   *
-   * @param {number|string} val
-   *
-   * @returns {number|null}
-   * @public
-   */
-
-  function parse(val) {
-    if (typeof val === 'number' && !isNaN(val)) {
-      return val;
-    }
-
-    if (typeof val !== 'string') {
-      return null;
-    }
-
-    // Test if the string passed is valid
-    var results = parseRegExp.exec(val);
-    var floatValue;
-    var unit = 'b';
-
-    if (!results) {
-      // Nothing could be extracted from the given string
-      floatValue = parseInt(val, 10);
-      unit = 'b';
-    } else {
-      // Retrieve the value and the unit
-      floatValue = parseFloat(results[1]);
-      unit = results[4].toLowerCase();
-    }
-
-    return Math.floor(map$1[unit] * floatValue);
-  }
-
-  const Tooltip_marginX = 10;
-  const Tooltip_marginY = 30;
-  const SOURCEMAP_RENDERED = (e$1("span", { children: [" ", e$1("b", { children: LABELS.renderedLength }, void 0), " is a number of characters in the file after individual and ", e$1("br", {}, void 0), " whole bundle transformations according to sourcemap."] }, void 0));
-  const RENDRED = (e$1("span", { children: [e$1("b", { children: LABELS.renderedLength }, void 0), " is a byte size of individual file after transformations and treeshake."] }, void 0));
-  const COMPRESSED = (e$1("span", { children: [e$1("b", { children: LABELS.gzipLength }, void 0), " and ", e$1("b", { children: LABELS.brotliLength }, void 0), " is a byte size of individual file after individual", " ", "transformations,", e$1("br", {}, void 0), " treeshake and compression."] }, void 0));
-  const Tooltip = ({ node, visible, root, sizeProperty }) => {
-      const { availableSizeProperties, getModuleSize, data } = F(StaticContext);
-      const ref = s(null);
-      const [style, setStyle] = l({});
-      const content = d(() => {
-          if (!node)
-              return null;
-          const mainSize = getModuleSize(node.data, sizeProperty);
-          const percentageNum = (100 * mainSize) / getModuleSize(root.data, sizeProperty);
-          const percentage = percentageNum.toFixed(2);
-          const percentageString = percentage + "%";
-          const path = node
-              .ancestors()
-              .reverse()
-              .map((d) => d.data.name)
-              .join("/");
-          let dataNode = null;
-          if (!isModuleTree(node.data)) {
-              const mainUid = data.nodeParts[node.data.uid].mainUid;
-              dataNode = data.nodeMetas[mainUid];
-          }
-          return (e$1(d$1, { children: [e$1("div", { children: path }, void 0), availableSizeProperties.map((sizeProp) => {
-                      if (sizeProp === sizeProperty) {
-                          return (e$1("div", { children: [e$1("b", { children: [LABELS[sizeProp], ": ", format_1(mainSize)] }, void 0), " ", "(", percentageString, ")"] }, void 0));
-                      }
-                      else {
-                          return (e$1("div", { children: [LABELS[sizeProp], ": ", format_1(getModuleSize(node.data, sizeProp))] }, void 0));
-                      }
-                  }), e$1("br", {}, void 0), dataNode && dataNode.importedBy.length > 0 && (e$1("div", { children: [e$1("div", { children: [e$1("b", { children: "Imported By" }, void 0), ":"] }, void 0), dataNode.importedBy.map(({ uid }) => {
-                              const id = data.nodeMetas[uid].id;
-                              return e$1("div", { children: id }, id);
-                          })] }, void 0)), e$1("br", {}, void 0), e$1("small", { children: data.options.sourcemap ? SOURCEMAP_RENDERED : RENDRED }, void 0), (data.options.gzip || data.options.brotli) && (e$1(d$1, { children: [e$1("br", {}, void 0), e$1("small", { children: COMPRESSED }, void 0)] }, void 0))] }, void 0));
-      }, [availableSizeProperties, data, getModuleSize, node, root.data, sizeProperty]);
-      const updatePosition = (mouseCoords) => {
-          if (!ref.current)
-              return;
-          const pos = {
-              left: mouseCoords.x + Tooltip_marginX,
-              top: mouseCoords.y + Tooltip_marginY,
-          };
-          const boundingRect = ref.current.getBoundingClientRect();
-          if (pos.left + boundingRect.width > window.innerWidth) {
-              // Shifting horizontally
-              pos.left = window.innerWidth - boundingRect.width;
-          }
-          if (pos.top + boundingRect.height > window.innerHeight) {
-              // Flipping vertically
-              pos.top = mouseCoords.y - Tooltip_marginY - boundingRect.height;
-          }
-          setStyle(pos);
-      };
-      y(() => {
-          const handleMouseMove = (event) => {
-              updatePosition({
-                  x: event.pageX,
-                  y: event.pageY,
-              });
-          };
-          document.addEventListener("mousemove", handleMouseMove, true);
-          return () => {
-              document.removeEventListener("mousemove", handleMouseMove, true);
-          };
-      }, []);
-      return (e$1("div", Object.assign({ className: `tooltip ${visible ? "" : "tooltip-hidden"}`, ref: ref, style: style }, { children: content }), void 0));
-  };
-
-  const Chart = ({ root, sizeProperty, selectedNode, setSelectedNode }) => {
-      const [showTooltip, setShowTooltip] = l(false);
-      const [tooltipNode, setTooltipNode] = l(undefined);
-      y(() => {
-          const handleMouseOut = () => {
-              setShowTooltip(false);
-          };
-          document.addEventListener("mouseover", handleMouseOut);
-          return () => {
-              document.removeEventListener("mouseover", handleMouseOut);
-          };
-      }, []);
-      return (e$1(d$1, { children: [e$1(TreeMap, { root: root, onNodeHover: (node) => {
-                      setTooltipNode(node);
-                      setShowTooltip(true);
-                  }, selectedNode: selectedNode, onNodeClick: (node) => {
-                      setSelectedNode(selectedNode === node ? undefined : node);
-                  } }, void 0), e$1(Tooltip, { visible: showTooltip, node: tooltipNode, root: root, sizeProperty: sizeProperty }, void 0)] }, void 0));
-  };
-
-  const Main = () => {
-      const { availableSizeProperties, rawHierarchy, getModuleSize, layout, data } = F(StaticContext);
-      const [sizeProperty, setSizeProperty] = l(availableSizeProperties[0]);
-      const [selectedNode, setSelectedNode] = l(undefined);
-      const { getModuleFilterMultiplier, setExcludeFilter, setIncludeFilter } = useFilter();
-      console.time("getNodeSizeMultiplier");
-      const getNodeSizeMultiplier = d(() => {
-          const rootSize = getModuleSize(rawHierarchy.data, sizeProperty);
-          const selectedSize = selectedNode ? getModuleSize(selectedNode.data, sizeProperty) : 1;
-          const multiplier = rootSize * 0.2 > selectedSize ? (rootSize * 0.2) / selectedSize : 3;
-          if (selectedNode === undefined) {
-              return () => 1;
-          }
-          else if (isModuleTree(selectedNode.data)) {
-              const leaves = new Set(selectedNode.leaves().map((d) => d.data));
-              return (node) => {
-                  if (leaves.has(node)) {
-                      return multiplier;
-                  }
-                  return 1;
-              };
-          }
-          else {
-              return (node) => {
-                  if (node === selectedNode.data) {
-                      return multiplier;
-                  }
-                  return 1;
-              };
-          }
-      }, [getModuleSize, rawHierarchy.data, selectedNode, sizeProperty]);
-      console.timeEnd("getNodeSizeMultiplier");
-      console.time("root hierarchy compute");
-      // root here always be the same as rawHierarchy even after layouting
-      const root = d(() => {
-          const rootWithSizesAndSorted = rawHierarchy
-              .sum((node) => {
-              if (isModuleTree(node))
-                  return 0;
-              const ownSize = getModuleSize(node, sizeProperty);
-              const zoomMultiplier = getNodeSizeMultiplier(node);
-              const filterMultiplier = getModuleFilterMultiplier(data.nodeMetas[data.nodeParts[node.uid].mainUid]);
-              return ownSize * zoomMultiplier * filterMultiplier;
-          })
-              .sort((a, b) => getModuleSize(a.data, sizeProperty) - getModuleSize(b.data, sizeProperty));
-          return layout(rootWithSizesAndSorted);
-      }, [data, getModuleFilterMultiplier, getModuleSize, getNodeSizeMultiplier, layout, rawHierarchy, sizeProperty]);
-      console.timeEnd("root hierarchy compute");
-      return (e$1(d$1, { children: [e$1(SideBar, { sizeProperty: sizeProperty, availableSizeProperties: availableSizeProperties, setSizeProperty: setSizeProperty, onExcludeChange: setExcludeFilter, onIncludeChange: setIncludeFilter }, void 0), e$1(Chart, { root: root, sizeProperty: sizeProperty, selectedNode: selectedNode, setSelectedNode: setSelectedNode }, void 0)] }, void 0));
-  };
-
   function initRange(domain, range) {
     switch (arguments.length) {
       case 0: break;
       case 1: this.range(domain); break;
       default: this.range(range).domain(domain); break;
-    }
-    return this;
-  }
-
-  function initInterpolator(domain, interpolator) {
-    switch (arguments.length) {
-      case 0: break;
-      case 1: {
-        if (typeof domain === "function") this.interpolator(domain);
-        else this.range(domain);
-        break;
-      }
-      default: {
-        this.domain(domain);
-        if (typeof interpolator === "function") this.interpolator(interpolator);
-        else this.range(interpolator);
-        break;
-      }
     }
     return this;
   }
@@ -1989,7 +1660,7 @@ var drawChart = (function (exports) {
     };
   }
 
-  function copy$1(source, target) {
+  function copy(source, target) {
     return target
         .domain(source.domain())
         .range(source.range())
@@ -1998,7 +1669,7 @@ var drawChart = (function (exports) {
         .unknown(source.unknown());
   }
 
-  function transformer$1() {
+  function transformer() {
     var domain = unit,
         range = unit,
         interpolate$1 = interpolate,
@@ -2057,7 +1728,7 @@ var drawChart = (function (exports) {
   }
 
   function continuous() {
-    return transformer$1()(identity$1, identity$1);
+    return transformer()(identity$1, identity$1);
   }
 
   function formatDecimal(x) {
@@ -2217,15 +1888,15 @@ var drawChart = (function (exports) {
     return x;
   }
 
-  var map = Array.prototype.map,
+  var map$1 = Array.prototype.map,
       prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
 
   function formatLocale(locale) {
-    var group = locale.grouping === undefined || locale.thousands === undefined ? identity : formatGroup(map.call(locale.grouping, Number), locale.thousands + ""),
+    var group = locale.grouping === undefined || locale.thousands === undefined ? identity : formatGroup(map$1.call(locale.grouping, Number), locale.thousands + ""),
         currencyPrefix = locale.currency === undefined ? "" : locale.currency[0] + "",
         currencySuffix = locale.currency === undefined ? "" : locale.currency[1] + "",
         decimal = locale.decimal === undefined ? "." : locale.decimal + "",
-        numerals = locale.numerals === undefined ? identity : formatNumerals(map.call(locale.numerals, String)),
+        numerals = locale.numerals === undefined ? identity : formatNumerals(map$1.call(locale.numerals, String)),
         percent = locale.percent === undefined ? "%" : locale.percent + "",
         minus = locale.minus === undefined ? "−" : locale.minus + "",
         nan = locale.nan === undefined ? "NaN" : locale.nan + "";
@@ -2358,7 +2029,7 @@ var drawChart = (function (exports) {
   }
 
   var locale;
-  var format;
+  var format$1;
   var formatPrefix;
 
   defaultLocale({
@@ -2369,7 +2040,7 @@ var drawChart = (function (exports) {
 
   function defaultLocale(definition) {
     locale = formatLocale(definition);
-    format = locale.format;
+    format$1 = locale.format;
     formatPrefix = locale.formatPrefix;
     return locale;
   }
@@ -2411,7 +2082,7 @@ var drawChart = (function (exports) {
         break;
       }
     }
-    return format(specifier);
+    return format$1(specifier);
   }
 
   function linearish(scale) {
@@ -2472,7 +2143,7 @@ var drawChart = (function (exports) {
     var scale = continuous();
 
     scale.copy = function() {
-      return copy$1(scale, linear());
+      return copy(scale, linear());
     };
 
     initRange.apply(scale, arguments);
@@ -2480,149 +2151,481 @@ var drawChart = (function (exports) {
     return linearish(scale);
   }
 
-  function transformer() {
-    var x0 = 0,
-        x1 = 1,
-        t0,
-        t1,
-        k10,
-        transform,
-        interpolator = identity$1,
-        clamp = false,
-        unknown;
-
-    function scale(x) {
-      return x == null || isNaN(x = +x) ? unknown : interpolator(k10 === 0 ? 0.5 : (x = (transform(x) - t0) * k10, clamp ? Math.max(0, Math.min(1, x)) : x));
-    }
-
-    scale.domain = function(_) {
-      return arguments.length ? ([x0, x1] = _, t0 = transform(x0 = +x0), t1 = transform(x1 = +x1), k10 = t0 === t1 ? 0 : 1 / (t1 - t0), scale) : [x0, x1];
-    };
-
-    scale.clamp = function(_) {
-      return arguments.length ? (clamp = !!_, scale) : clamp;
-    };
-
-    scale.interpolator = function(_) {
-      return arguments.length ? (interpolator = _, scale) : interpolator;
-    };
-
-    function range(interpolate) {
-      return function(_) {
-        var r0, r1;
-        return arguments.length ? ([r0, r1] = _, interpolator = interpolate(r0, r1), scale) : [interpolator(0), interpolator(1)];
-      };
-    }
-
-    scale.range = range(interpolate);
-
-    scale.rangeRound = range(interpolateRound);
-
-    scale.unknown = function(_) {
-      return arguments.length ? (unknown = _, scale) : unknown;
-    };
-
-    return function(t) {
-      transform = t, t0 = t(x0), t1 = t(x1), k10 = t0 === t1 ? 0 : 1 / (t1 - t0);
-      return scale;
+  function transformPow(exponent) {
+    return function(x) {
+      return x < 0 ? -Math.pow(-x, exponent) : Math.pow(x, exponent);
     };
   }
 
-  function copy(source, target) {
-    return target
-        .domain(source.domain())
-        .interpolator(source.interpolator())
-        .clamp(source.clamp())
-        .unknown(source.unknown());
+  function transformSqrt(x) {
+    return x < 0 ? -Math.sqrt(-x) : Math.sqrt(x);
   }
 
-  function sequential() {
-    var scale = linearish(transformer()(identity$1));
+  function transformSquare(x) {
+    return x < 0 ? -x * x : x * x;
+  }
+
+  function powish(transform) {
+    var scale = transform(identity$1, identity$1),
+        exponent = 1;
+
+    function rescale() {
+      return exponent === 1 ? transform(identity$1, identity$1)
+          : exponent === 0.5 ? transform(transformSqrt, transformSquare)
+          : transform(transformPow(exponent), transformPow(1 / exponent));
+    }
+
+    scale.exponent = function(_) {
+      return arguments.length ? (exponent = +_, rescale()) : exponent;
+    };
+
+    return linearish(scale);
+  }
+
+  function pow() {
+    var scale = powish(transformer());
 
     scale.copy = function() {
-      return copy(scale, sequential());
+      return copy(scale, pow()).exponent(scale.exponent());
     };
 
-    return initInterpolator.apply(scale, arguments);
+    initRange.apply(scale, arguments);
+
+    return scale;
   }
 
-  const COLOR_BASE = "#cecece";
+  function sqrt() {
+    return pow.apply(null, arguments).exponent(0.5);
+  }
 
-  // https://www.w3.org/TR/WCAG20/#relativeluminancedef
-  const rc = 0.2126;
-  const gc = 0.7152;
-  const bc = 0.0722;
-  // low-gamma adjust coefficient
-  const lowc = 1 / 12.92;
-  function adjustGamma(p) {
-      return Math.pow((p + 0.055) / 1.055, 2.4);
-  }
-  function relativeLuminance(o) {
-      const rsrgb = o.r / 255;
-      const gsrgb = o.g / 255;
-      const bsrgb = o.b / 255;
-      const r = rsrgb <= 0.03928 ? rsrgb * lowc : adjustGamma(rsrgb);
-      const g = gsrgb <= 0.03928 ? gsrgb * lowc : adjustGamma(gsrgb);
-      const b = bsrgb <= 0.03928 ? bsrgb * lowc : adjustGamma(bsrgb);
-      return r * rc + g * gc + b * bc;
-  }
-  const createRainbowColor = (root) => {
-      const colorParentMap = new Map();
-      colorParentMap.set(root, COLOR_BASE);
-      if (root.children != null) {
-          const colorScale = sequential([0, root.children.length], (n) => hsl(360 * n, 0.3, 0.85));
-          root.children.forEach((c, id) => {
-              colorParentMap.set(c, colorScale(id).toString());
-          });
+  const isModuleTree = (mod) => "children" in mod;
+
+  const LABELS = {
+      renderedLength: "Rendered",
+      gzipLength: "Gzip",
+      brotliLength: "Brotli",
+  };
+  const getAvailableSizeOptions = (options) => {
+      const availableSizeProperties = ["renderedLength"];
+      if (options.gzip) {
+          availableSizeProperties.push("gzipLength");
       }
-      const colorMap = new Map();
-      const lightScale = linear().domain([0, root.height]).range([0.9, 0.3]);
-      const getBackgroundColor = (node) => {
-          const parents = node.ancestors();
-          const colorStr = parents.length === 1 ? colorParentMap.get(parents[0]) : colorParentMap.get(parents[parents.length - 2]);
-          const hslColor = hsl(colorStr);
-          hslColor.l = lightScale(node.depth);
-          return hslColor;
-      };
-      return (node) => {
-          if (!colorMap.has(node)) {
-              const backgroundColor = getBackgroundColor(node);
-              const l = relativeLuminance(backgroundColor.rgb());
-              const fontColor = l > 0.19 ? "#000" : "#fff";
-              colorMap.set(node, {
-                  backgroundColor: backgroundColor.toString(),
-                  fontColor,
-              });
+      if (options.brotli) {
+          availableSizeProperties.push("brotliLength");
+      }
+      return availableSizeProperties;
+  };
+
+  let count = 0;
+  class Id {
+      constructor(id) {
+          this._id = id;
+          const url = new URL(window.location.href);
+          url.hash = id;
+          this._href = url.toString();
+      }
+      get id() {
+          return this._id;
+      }
+      get href() {
+          return this._href;
+      }
+      toString() {
+          return `url(${this.href})`;
+      }
+  }
+  function generateUniqueId(name) {
+      count += 1;
+      const id = ["O", name, count].filter(Boolean).join("-");
+      return new Id(id);
+  }
+
+  var t,u,r,o=0,i=[],c=l$1.__b,f=l$1.__r,e=l$1.diffed,a=l$1.__c,v=l$1.unmount;function m(t,r){l$1.__h&&l$1.__h(u,t,o||r),o=0;var i=u.__H||(u.__H={__:[],__h:[]});return t>=i.__.length&&i.__.push({}),i.__[t]}function l(n){return o=1,p(w,n)}function p(n,r,o){var i=m(t++,2);return i.t=n,i.__c||(i.__=[o?o(r):w(void 0,r),function(n){var t=i.t(i.__[0],n);i.__[0]!==t&&(i.__=[t,i.__[1]],i.__c.setState({}));}],i.__c=u),i.__}function y(r,o){var i=m(t++,3);!l$1.__s&&k(i.__H,o)&&(i.__=r,i.__H=o,u.__H.__h.push(i));}function d(n,u){var r=m(t++,7);return k(r.__H,u)&&(r.__=n(),r.__H=u,r.__h=n),r.__}function F(n){var r=u.context[n.__c],o=m(t++,9);return o.c=n,r?(null==o.__&&(o.__=!0,r.sub(u)),r.props.value):n.__}function x(){var t;for(i.sort(function(n,t){return n.__v.__b-t.__v.__b});t=i.pop();)if(t.__P)try{t.__H.__h.forEach(g),t.__H.__h.forEach(j),t.__H.__h=[];}catch(u){t.__H.__h=[],l$1.__e(u,t.__v);}}l$1.__b=function(n){u=null,c&&c(n);},l$1.__r=function(n){f&&f(n),t=0;var r=(u=n.__c).__H;r&&(r.__h.forEach(g),r.__h.forEach(j),r.__h=[]);},l$1.diffed=function(t){e&&e(t);var o=t.__c;o&&o.__H&&o.__H.__h.length&&(1!==i.push(o)&&r===l$1.requestAnimationFrame||((r=l$1.requestAnimationFrame)||function(n){var t,u=function(){clearTimeout(r),b&&cancelAnimationFrame(t),setTimeout(n);},r=setTimeout(u,100);b&&(t=requestAnimationFrame(u));})(x)),u=null;},l$1.__c=function(t,u){u.some(function(t){try{t.__h.forEach(g),t.__h=t.__h.filter(function(n){return !n.__||j(n)});}catch(r){u.some(function(n){n.__h&&(n.__h=[]);}),u=[],l$1.__e(r,t.__v);}}),a&&a(t,u);},l$1.unmount=function(t){v&&v(t);var u,r=t.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{g(n);}catch(n){u=n;}}),u&&l$1.__e(u,r.__v));};var b="function"==typeof requestAnimationFrame;function g(n){var t=u,r=n.__c;"function"==typeof r&&(n.__c=void 0,r()),u=t;}function j(n){var t=u;n.__c=n.__(),u=t;}function k(n,t){return !n||n.length!==t.length||t.some(function(t,u){return t!==n[u]})}function w(n,t){return "function"==typeof t?t(n):t}
+
+  const SideBar = ({ availableSizeProperties, sizeProperty, setSizeProperty, onExcludeChange, onIncludeChange, }) => {
+      const [includeValue, setIncludeValue] = l("");
+      const [excludeValue, setExcludeValue] = l("");
+      const handleSizePropertyChange = (sizeProp) => () => {
+          if (sizeProp !== sizeProperty) {
+              setSizeProperty(sizeProp);
           }
-          return colorMap.get(node);
       };
+      const handleIncludeChange = (event) => {
+          const value = event.currentTarget.value;
+          setIncludeValue(value);
+          onIncludeChange(value);
+      };
+      const handleExcludeChange = (event) => {
+          const value = event.currentTarget.value;
+          setExcludeValue(value);
+          onExcludeChange(value);
+      };
+      return (e$1("aside", Object.assign({ className: "sidebar" }, { children: [e$1("div", Object.assign({ className: "size-selectors" }, { children: availableSizeProperties.length > 1 &&
+                      availableSizeProperties.map((sizeProp) => {
+                          const id = `selector-${sizeProp}`;
+                          return (e$1("div", Object.assign({ className: "size-selector" }, { children: [e$1("input", { type: "radio", id: id, checked: sizeProp === sizeProperty, onChange: handleSizePropertyChange(sizeProp) }, void 0), e$1("label", Object.assign({ htmlFor: id }, { children: LABELS[sizeProp] }), void 0)] }), sizeProp));
+                      }) }), void 0), e$1("div", Object.assign({ className: "module-filters" }, { children: [e$1("div", Object.assign({ className: "module-filter" }, { children: [e$1("label", Object.assign({ htmlFor: "module-filter-exclude" }, { children: "Exclude" }), void 0), e$1("input", { type: "text", id: "module-filter-exclude", value: excludeValue, onInput: handleExcludeChange }, void 0)] }), void 0), e$1("div", Object.assign({ className: "module-filter" }, { children: [e$1("label", Object.assign({ htmlFor: "module-filter-include" }, { children: "Include" }), void 0), e$1("input", { type: "text", id: "module-filter-include", value: includeValue, onInput: handleIncludeChange }, void 0)] }), void 0)] }), void 0)] }), void 0));
+  };
+
+  const throttleFilter = (callback, limit) => {
+      let waiting = false;
+      return (val) => {
+          if (!waiting) {
+              callback(val);
+              waiting = true;
+              setTimeout(() => {
+                  waiting = false;
+              }, limit);
+          }
+      };
+  };
+  const useFilter = () => {
+      const [includeFilter, setIncludeFilter] = l("");
+      const [excludeFilter, setExcludeFilter] = l("");
+      const setIncludeFilterTrottled = d(() => throttleFilter(setIncludeFilter, 200), []);
+      const setExcludeFilterTrottled = d(() => throttleFilter(setExcludeFilter, 200), []);
+      const isModuleIncluded = d(() => {
+          if (includeFilter === "") {
+              return () => true;
+          }
+          try {
+              const re = new RegExp(includeFilter);
+              return ({ id }) => re.test(id);
+          }
+          catch (err) {
+              return () => false;
+          }
+      }, [includeFilter]);
+      const isModuleExcluded = d(() => {
+          if (excludeFilter === "") {
+              return () => false;
+          }
+          try {
+              const re = new RegExp(excludeFilter);
+              return ({ id }) => re.test(id);
+          }
+          catch (err) {
+              return () => false;
+          }
+      }, [excludeFilter]);
+      const isDefaultInclude = includeFilter === "";
+      const getModuleFilterMultiplier = d(() => {
+          return (data) => {
+              if (isDefaultInclude) {
+                  return isModuleExcluded(data) ? 0 : 1;
+              }
+              return isModuleExcluded(data) && !isModuleIncluded(data) ? 0 : 1;
+          };
+      }, [isDefaultInclude, isModuleExcluded, isModuleIncluded]);
+      return {
+          getModuleFilterMultiplier,
+          includeFilter,
+          excludeFilter,
+          setExcludeFilter: setExcludeFilterTrottled,
+          setIncludeFilter: setIncludeFilterTrottled,
+      };
+  };
+
+  var bytes$1 = {exports: {}};
+
+  /*!
+   * bytes
+   * Copyright(c) 2012-2014 TJ Holowaychuk
+   * Copyright(c) 2015 Jed Watson
+   * MIT Licensed
+   */
+
+  /**
+   * Module exports.
+   * @public
+   */
+
+  bytes$1.exports = bytes;
+  var format_1 = bytes$1.exports.format = format;
+  bytes$1.exports.parse = parse;
+
+  /**
+   * Module variables.
+   * @private
+   */
+
+  var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
+
+  var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
+
+  var map = {
+    b:  1,
+    kb: 1 << 10,
+    mb: 1 << 20,
+    gb: 1 << 30,
+    tb: Math.pow(1024, 4),
+    pb: Math.pow(1024, 5),
+  };
+
+  var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
+
+  /**
+   * Convert the given value in bytes into a string or parse to string to an integer in bytes.
+   *
+   * @param {string|number} value
+   * @param {{
+   *  case: [string],
+   *  decimalPlaces: [number]
+   *  fixedDecimals: [boolean]
+   *  thousandsSeparator: [string]
+   *  unitSeparator: [string]
+   *  }} [options] bytes options.
+   *
+   * @returns {string|number|null}
+   */
+
+  function bytes(value, options) {
+    if (typeof value === 'string') {
+      return parse(value);
+    }
+
+    if (typeof value === 'number') {
+      return format(value, options);
+    }
+
+    return null;
+  }
+
+  /**
+   * Format the given value in bytes into a string.
+   *
+   * If the value is negative, it is kept as such. If it is a float,
+   * it is rounded.
+   *
+   * @param {number} value
+   * @param {object} [options]
+   * @param {number} [options.decimalPlaces=2]
+   * @param {number} [options.fixedDecimals=false]
+   * @param {string} [options.thousandsSeparator=]
+   * @param {string} [options.unit=]
+   * @param {string} [options.unitSeparator=]
+   *
+   * @returns {string|null}
+   * @public
+   */
+
+  function format(value, options) {
+    if (!Number.isFinite(value)) {
+      return null;
+    }
+
+    var mag = Math.abs(value);
+    var thousandsSeparator = (options && options.thousandsSeparator) || '';
+    var unitSeparator = (options && options.unitSeparator) || '';
+    var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
+    var fixedDecimals = Boolean(options && options.fixedDecimals);
+    var unit = (options && options.unit) || '';
+
+    if (!unit || !map[unit.toLowerCase()]) {
+      if (mag >= map.pb) {
+        unit = 'PB';
+      } else if (mag >= map.tb) {
+        unit = 'TB';
+      } else if (mag >= map.gb) {
+        unit = 'GB';
+      } else if (mag >= map.mb) {
+        unit = 'MB';
+      } else if (mag >= map.kb) {
+        unit = 'KB';
+      } else {
+        unit = 'B';
+      }
+    }
+
+    var val = value / map[unit.toLowerCase()];
+    var str = val.toFixed(decimalPlaces);
+
+    if (!fixedDecimals) {
+      str = str.replace(formatDecimalsRegExp, '$1');
+    }
+
+    if (thousandsSeparator) {
+      str = str.split('.').map(function (s, i) {
+        return i === 0
+          ? s.replace(formatThousandsRegExp, thousandsSeparator)
+          : s
+      }).join('.');
+    }
+
+    return str + unitSeparator + unit;
+  }
+
+  /**
+   * Parse the string value into an integer in bytes.
+   *
+   * If no unit is given, it is assumed the value is in bytes.
+   *
+   * @param {number|string} val
+   *
+   * @returns {number|null}
+   * @public
+   */
+
+  function parse(val) {
+    if (typeof val === 'number' && !isNaN(val)) {
+      return val;
+    }
+
+    if (typeof val !== 'string') {
+      return null;
+    }
+
+    // Test if the string passed is valid
+    var results = parseRegExp.exec(val);
+    var floatValue;
+    var unit = 'b';
+
+    if (!results) {
+      // Nothing could be extracted from the given string
+      floatValue = parseInt(val, 10);
+      unit = 'b';
+    } else {
+      // Retrieve the value and the unit
+      floatValue = parseFloat(results[1]);
+      unit = results[4].toLowerCase();
+    }
+
+    return Math.floor(map[unit] * floatValue);
+  }
+
+  const Tooltip = ({ node, root, sizeProperty }) => {
+      const { availableSizeProperties, getModuleSize } = F(StaticContext);
+      const content = d(() => {
+          if (!node)
+              return null;
+          const mainSize = getModuleSize(node.data, sizeProperty);
+          const percentageNum = (100 * mainSize) / getModuleSize(root.data, sizeProperty);
+          const percentage = percentageNum.toFixed(2);
+          const percentageString = percentage + "%";
+          return (e$1(d$1, { children: [e$1("div", Object.assign({ className: "details-name" }, { children: node.data.name }), void 0), e$1("div", Object.assign({ className: "details-percentage" }, { children: percentageString }), void 0), availableSizeProperties.map((sizeProp) => {
+                      if (sizeProp === sizeProperty) {
+                          return (e$1("div", Object.assign({ className: "details-size" }, { children: e$1("b", { children: [LABELS[sizeProp], ": ", format_1(getModuleSize(node.data, sizeProp))] }, void 0) }), void 0));
+                      }
+                      else {
+                          return (e$1("div", Object.assign({ className: "details-size" }, { children: [LABELS[sizeProp], ": ", format_1(getModuleSize(node.data, sizeProp))] }), void 0));
+                      }
+                  })] }, void 0));
+      }, [availableSizeProperties, getModuleSize, node, root.data, sizeProperty]);
+      return e$1("div", Object.assign({ className: "details" }, { children: content }), void 0);
+  };
+
+  const COLOR_DEFAULT_FILE = "#db7100";
+  const COLOR_DEFAULT_OWN_SOURCE = "#487ea4";
+  const COLOR_DEFAULT_VENDOR_SOURCE = "#599e59";
+  const colorDefault = (node) => {
+      if (node.children && node.children.length) {
+          const parents = node.ancestors();
+          const hasNodeModules = parents.some(({ data: { name } }) => name === "node_modules");
+          return hasNodeModules ? COLOR_DEFAULT_VENDOR_SOURCE : COLOR_DEFAULT_OWN_SOURCE;
+      }
+      else {
+          return COLOR_DEFAULT_FILE;
+      }
+  };
+
+  const Node = ({ node, onMouseOver, onClick, path, highlighted, selected }) => {
+      return (e$1("path", { d: path, "fill-rule": "evenodd", stroke: "#fff", fill: colorDefault(node), onMouseOver: (evt) => {
+              evt.stopPropagation();
+              onMouseOver(node);
+          }, onClick: (evt) => {
+              evt.stopPropagation();
+              onClick(node);
+          }, opacity: highlighted ? 1 : 0.3, "stroke-width": selected ? 3 : undefined }, void 0));
+  };
+
+  const SunBurst = ({ root, onNodeHover, isNodeHighlighted, selectedNode, onNodeClick, }) => {
+      const { getModuleIds, size, arc, radius } = F(StaticContext);
+      return (e$1("svg", Object.assign({ xmlns: "http://www.w3.org/2000/svg", viewBox: `0 0 ${size} ${size}` }, { children: e$1("g", Object.assign({ transform: `translate(${radius},${radius})` }, { children: root.descendants().map((node) => {
+                  return (e$1(Node, { node: node, onMouseOver: onNodeHover, path: arc(node), highlighted: isNodeHighlighted(node), selected: selectedNode === node, onClick: onNodeClick }, getModuleIds(node.data).nodeUid.id));
+              }) }), void 0) }), void 0));
+  };
+
+  const Chart = ({ root, sizeProperty, selectedNode, setSelectedNode }) => {
+      const [tooltipNode, setTooltipNode] = l(root);
+      const isNodeHighlighted = d(() => {
+          const highlightedNodes = new Set(tooltipNode === root ? root.descendants() : tooltipNode.ancestors());
+          return (node) => {
+              return highlightedNodes.has(node);
+          };
+      }, [root, tooltipNode]);
+      y(() => {
+          const handleMouseOut = () => {
+              setTooltipNode(root);
+          };
+          handleMouseOut();
+          document.addEventListener("mouseover", handleMouseOut);
+          return () => {
+              document.removeEventListener("mouseover", handleMouseOut);
+          };
+      }, [root]);
+      return (e$1(d$1, { children: [e$1(SunBurst, { root: root, onNodeHover: (node) => {
+                      setTooltipNode(node);
+                  }, isNodeHighlighted: isNodeHighlighted, selectedNode: selectedNode, onNodeClick: (node) => {
+                      setSelectedNode(selectedNode === node ? undefined : node);
+                  } }, void 0), e$1(Tooltip, { node: tooltipNode, root: root, sizeProperty: sizeProperty }, void 0)] }, void 0));
+  };
+
+  const Main = () => {
+      const { availableSizeProperties, rawHierarchy, getModuleSize, layout, data } = F(StaticContext);
+      const [sizeProperty, setSizeProperty] = l(availableSizeProperties[0]);
+      const [selectedNode, setSelectedNode] = l(undefined);
+      const { getModuleFilterMultiplier, setExcludeFilter, setIncludeFilter } = useFilter();
+      const getNodeSizeMultiplier = d(() => {
+          if (selectedNode === undefined) {
+              return () => 1;
+          }
+          else if (isModuleTree(selectedNode.data)) {
+              const descendants = new Set(selectedNode.descendants().map((d) => d.data));
+              return (node) => {
+                  if (descendants.has(node)) {
+                      return 3;
+                  }
+                  return 1;
+              };
+          }
+          else {
+              return (node) => {
+                  if (node === selectedNode.data) {
+                      return 3;
+                  }
+                  return 1;
+              };
+          }
+      }, [selectedNode]);
+      // root here always be the same as rawHierarchy even after layouting
+      const root = d(() => {
+          const rootWithSizesAndSorted = rawHierarchy
+              .sum((node) => {
+              if (isModuleTree(node))
+                  return 0;
+              const ownSize = getModuleSize(node, sizeProperty);
+              const zoomMultiplier = getNodeSizeMultiplier(node);
+              const filterMultiplier = getModuleFilterMultiplier(data.nodeMetas[data.nodeParts[node.uid].mainUid]);
+              return ownSize * zoomMultiplier * filterMultiplier;
+          })
+              .sort((a, b) => getModuleSize(a.data, sizeProperty) - getModuleSize(b.data, sizeProperty));
+          return layout(rootWithSizesAndSorted);
+      }, [data, getModuleFilterMultiplier, getModuleSize, getNodeSizeMultiplier, layout, rawHierarchy, sizeProperty]);
+      return (e$1(d$1, { children: [e$1(SideBar, { sizeProperty: sizeProperty, availableSizeProperties: availableSizeProperties, setSizeProperty: setSizeProperty, onExcludeChange: setExcludeFilter, onIncludeChange: setIncludeFilter }, void 0), e$1(Chart, { root: root, sizeProperty: sizeProperty, selectedNode: selectedNode, setSelectedNode: setSelectedNode }, void 0)] }, void 0));
   };
 
   const StaticContext = D({});
   const drawChart = (parentNode, data, width, height) => {
       const availableSizeProperties = getAvailableSizeOptions(data.options);
-      console.time("layout create");
-      const layout = treemap()
-          .size([width, height])
-          .paddingOuter(PADDING)
-          .paddingTop(TOP_PADDING)
-          .paddingInner(PADDING)
-          .round(true)
-          .tile(treemapResquarify);
-      console.timeEnd("layout create");
-      console.time("rawHierarchy create");
+      const layout = partition();
       const rawHierarchy = hierarchy(data.tree);
-      console.timeEnd("rawHierarchy create");
       const nodeSizesCache = new Map();
       const nodeIdsCache = new Map();
       const getModuleSize = (node, sizeKey) => { var _a, _b; return (_b = (_a = nodeSizesCache.get(node)) === null || _a === void 0 ? void 0 : _a[sizeKey]) !== null && _b !== void 0 ? _b : 0; };
-      console.time("rawHierarchy eachAfter cache");
       rawHierarchy.eachAfter((node) => {
-          var _a;
           const nodeData = node.data;
           nodeIdsCache.set(nodeData, {
               nodeUid: generateUniqueId("node"),
-              clipUid: generateUniqueId("clip"),
           });
           const sizes = { renderedLength: 0, gzipLength: 0, brotliLength: 0 };
           if (isModuleTree(nodeData)) {
@@ -2632,26 +2635,33 @@ var drawChart = (function (exports) {
           }
           else {
               for (const sizeKey of availableSizeProperties) {
-                  sizes[sizeKey] = (_a = data.nodeParts[nodeData.uid][sizeKey]) !== null && _a !== void 0 ? _a : 0;
+                  sizes[sizeKey] = data.nodeParts[nodeData.uid][sizeKey];
               }
           }
           nodeSizesCache.set(nodeData, sizes);
       });
-      console.timeEnd("rawHierarchy eachAfter cache");
       const getModuleIds = (node) => nodeIdsCache.get(node);
-      console.time("color");
-      const getModuleColor = createRainbowColor(rawHierarchy);
-      console.timeEnd("color");
+      const size = Math.min(width, height);
+      const radius = size / 2;
+      const x = linear().range([0, 2 * Math.PI]);
+      const y = sqrt().range([0, radius]);
+      const arc = d3arc()
+          .startAngle((d) => Math.max(0, Math.min(2 * Math.PI, x(d.x0))))
+          .endAngle((d) => Math.max(0, Math.min(2 * Math.PI, x(d.x1))))
+          .innerRadius((d) => y(d.y0))
+          .outerRadius((d) => y(d.y1));
       S(e$1(StaticContext.Provider, Object.assign({ value: {
               data,
               availableSizeProperties,
               width,
               height,
               getModuleSize,
-              getModuleIds,
-              getModuleColor,
               rawHierarchy,
               layout,
+              getModuleIds,
+              arc,
+              radius,
+              size,
           } }, { children: e$1(Main, {}, void 0) }), void 0), parentNode);
   };
 
@@ -2663,13 +2673,13 @@ var drawChart = (function (exports) {
   return exports;
 
 })({});
-//# sourceMappingURL=treemap.js.map
+//# sourceMappingURL=sunburst.js.map
 
   /*-->*/
   </script>
   <script>
     /*<!--*/
-    const data = {"version":2,"tree":{"name":"root","children":[{"name":"assets/index.bf456e6e.js","children":[{"name":"vite","children":[{"uid":"dc56-1","name":"modulepreload-polyfill"},{"uid":"dc56-3","name":"preload-helper"}]},{"name":"src","children":[{"name":"router","children":[{"name":"modules","children":[{"uid":"dc56-5","name":"index.ts"},{"uid":"dc56-7","name":"my.ts"}]},{"uid":"dc56-9","name":"index.ts"}]},{"uid":"dc56-13","name":"App.vue"},{"name":"style/tailwind.css","uid":"dc56-15"},{"uid":"dc56-17","name":"main.ts"}]},{"uid":"dc56-11","name":"plugin-vue:export-helper"},{"uid":"dc56-19","name":"index.html"}]},{"name":"assets/vendor.c7e57498.js","children":[{"name":"node_modules/.pnpm","children":[{"name":"@vue+shared@3.2.31/node_modules/@vue/shared/dist/shared.esm-bundler.js","uid":"dc56-21"},{"name":"@vue+reactivity@3.2.31/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js","uid":"dc56-23"},{"name":"@vue+runtime-core@3.2.31/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js","uid":"dc56-25"},{"name":"@vue+runtime-dom@3.2.31/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js","uid":"dc56-27"},{"name":"vue@3.2.31/node_modules/vue/dist/vue.runtime.esm-bundler.js","uid":"dc56-29"},{"name":"@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm","children":[{"uid":"dc56-31","name":"env.js"},{"uid":"dc56-33","name":"const.js"},{"uid":"dc56-35","name":"time.js"},{"uid":"dc56-37","name":"proxy.js"},{"name":"api","children":[{"uid":"dc56-39","name":"api.js"},{"uid":"dc56-41","name":"app.js"},{"uid":"dc56-43","name":"component.js"},{"uid":"dc56-45","name":"context.js"},{"uid":"dc56-47","name":"hooks.js"},{"uid":"dc56-49","name":"util.js"},{"uid":"dc56-51","name":"index.js"}]},{"uid":"dc56-53","name":"plugin.js"},{"uid":"dc56-55","name":"index.js"}]},{"name":"vue-router@4.0.14_vue@3.2.31/node_modules/vue-router/dist/vue-router.esm-bundler.js","uid":"dc56-57"}]}]},{"name":"assets/index.3c65c250.js","children":[{"name":"src/views/index.vue","uid":"dc56-59"}]},{"name":"assets/page.c3c1e70d.js","children":[{"name":"src/views/page.vue","uid":"dc56-61"}]},{"name":"assets/index.83ed42c6.js","children":[{"name":"src/layout","children":[{"uid":"dc56-63","name":"index.vue?vue&type=style&index=0&scoped=true&lang.scss"},{"uid":"dc56-65","name":"index.vue"}]}]},{"name":"assets/index.d027efbd.js","children":[{"name":"src/views/my","children":[{"uid":"dc56-67","name":"index.vue?vue&type=style&index=0&lang.css"},{"uid":"dc56-69","name":"index.vue"}]}]},{"name":"assets/about.4dd86a7b.js","children":[{"name":"src/views/my","children":[{"uid":"dc56-71","name":"about.vue?vue&type=style&index=0&lang.css"},{"uid":"dc56-73","name":"about.vue"}]}]},{"name":"assets/center.ed8af229.js","children":[{"name":"src/views/my","children":[{"uid":"dc56-75","name":"center.vue?vue&type=style&index=0&lang.css"},{"uid":"dc56-77","name":"center.vue"}]}]}],"isRoot":true},"nodeParts":{"dc56-1":{"renderedLength":1572,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-0"},"dc56-3":{"renderedLength":1363,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-2"},"dc56-5":{"renderedLength":304,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-4"},"dc56-7":{"renderedLength":667,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-6"},"dc56-9":{"renderedLength":561,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-8"},"dc56-11":{"renderedLength":157,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-10"},"dc56-13":{"renderedLength":261,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-12"},"dc56-15":{"renderedLength":18,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-14"},"dc56-17":{"renderedLength":140,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-16"},"dc56-19":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-18"},"dc56-21":{"renderedLength":6363,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-20"},"dc56-23":{"renderedLength":30814,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-22"},"dc56-25":{"renderedLength":151929,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-24"},"dc56-27":{"renderedLength":18419,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-26"},"dc56-29":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-28"},"dc56-31":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-30"},"dc56-33":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-32"},"dc56-35":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-34"},"dc56-37":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-36"},"dc56-39":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-38"},"dc56-41":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-40"},"dc56-43":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-42"},"dc56-45":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-44"},"dc56-47":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-46"},"dc56-49":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-48"},"dc56-51":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-50"},"dc56-53":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-52"},"dc56-55":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-54"},"dc56-57":{"renderedLength":98399,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-56"},"dc56-59":{"renderedLength":196,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-58"},"dc56-61":{"renderedLength":198,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-60"},"dc56-63":{"renderedLength":59,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-62"},"dc56-65":{"renderedLength":1540,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-64"},"dc56-67":{"renderedLength":47,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-66"},"dc56-69":{"renderedLength":702,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-68"},"dc56-71":{"renderedLength":47,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-70"},"dc56-73":{"renderedLength":365,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-72"},"dc56-75":{"renderedLength":48,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-74"},"dc56-77":{"renderedLength":420,"gzipLength":0,"brotliLength":0,"mainUid":"dc56-76"}},"nodeMetas":{"dc56-0":{"id":"vite/modulepreload-polyfill","moduleParts":{"assets/index.bf456e6e.js":"dc56-1"},"imported":[],"importedBy":[{"uid":"dc56-18"}]},"dc56-2":{"id":"vite/preload-helper","moduleParts":{"assets/index.bf456e6e.js":"dc56-3"},"imported":[],"importedBy":[{"uid":"dc56-4"},{"uid":"dc56-6"}]},"dc56-4":{"id":"/src/router/modules/index.ts","moduleParts":{"assets/index.bf456e6e.js":"dc56-5"},"imported":[{"uid":"dc56-2"},{"uid":"dc56-58","dynamic":true},{"uid":"dc56-60","dynamic":true}],"importedBy":[{"uid":"dc56-8"}]},"dc56-6":{"id":"/src/router/modules/my.ts","moduleParts":{"assets/index.bf456e6e.js":"dc56-7"},"imported":[{"uid":"dc56-2"},{"uid":"dc56-64","dynamic":true},{"uid":"dc56-68","dynamic":true},{"uid":"dc56-72","dynamic":true},{"uid":"dc56-76","dynamic":true}],"importedBy":[{"uid":"dc56-8"}]},"dc56-8":{"id":"/src/router/index.ts","moduleParts":{"assets/index.bf456e6e.js":"dc56-9"},"imported":[{"uid":"dc56-4"},{"uid":"dc56-6"},{"uid":"dc56-56"}],"importedBy":[{"uid":"dc56-16"}]},"dc56-10":{"id":"plugin-vue:export-helper","moduleParts":{"assets/index.bf456e6e.js":"dc56-11"},"imported":[],"importedBy":[{"uid":"dc56-12"},{"uid":"dc56-58"},{"uid":"dc56-60"},{"uid":"dc56-64"},{"uid":"dc56-68"},{"uid":"dc56-72"},{"uid":"dc56-76"}]},"dc56-12":{"id":"/src/App.vue","moduleParts":{"assets/index.bf456e6e.js":"dc56-13"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-10"}],"importedBy":[{"uid":"dc56-16"}]},"dc56-14":{"id":"/src/style/tailwind.css","moduleParts":{"assets/index.bf456e6e.js":"dc56-15"},"imported":[],"importedBy":[{"uid":"dc56-16"}]},"dc56-16":{"id":"/src/main.ts","moduleParts":{"assets/index.bf456e6e.js":"dc56-17"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-8"},{"uid":"dc56-12"},{"uid":"dc56-14"}],"importedBy":[{"uid":"dc56-18"}]},"dc56-18":{"id":"/index.html","moduleParts":{"assets/index.bf456e6e.js":"dc56-19"},"imported":[{"uid":"dc56-0"},{"uid":"dc56-16"}],"importedBy":[],"isEntry":true},"dc56-20":{"id":"/node_modules/.pnpm/@vue+shared@3.2.31/node_modules/@vue/shared/dist/shared.esm-bundler.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-21"},"imported":[],"importedBy":[{"uid":"dc56-26"},{"uid":"dc56-24"},{"uid":"dc56-22"}]},"dc56-22":{"id":"/node_modules/.pnpm/@vue+reactivity@3.2.31/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-23"},"imported":[{"uid":"dc56-20"}],"importedBy":[{"uid":"dc56-24"}]},"dc56-24":{"id":"/node_modules/.pnpm/@vue+runtime-core@3.2.31/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-25"},"imported":[{"uid":"dc56-22"},{"uid":"dc56-20"}],"importedBy":[{"uid":"dc56-26"}]},"dc56-26":{"id":"/node_modules/.pnpm/@vue+runtime-dom@3.2.31/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-27"},"imported":[{"uid":"dc56-24"},{"uid":"dc56-20"}],"importedBy":[{"uid":"dc56-28"}]},"dc56-28":{"id":"/node_modules/.pnpm/vue@3.2.31/node_modules/vue/dist/vue.runtime.esm-bundler.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-29"},"imported":[{"uid":"dc56-26"}],"importedBy":[{"uid":"dc56-16"},{"uid":"dc56-12"},{"uid":"dc56-56"},{"uid":"dc56-58"},{"uid":"dc56-60"},{"uid":"dc56-64"},{"uid":"dc56-68"},{"uid":"dc56-72"},{"uid":"dc56-76"}]},"dc56-30":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/env.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-31"},"imported":[],"importedBy":[{"uid":"dc56-54"}]},"dc56-32":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/const.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-33"},"imported":[],"importedBy":[{"uid":"dc56-54"},{"uid":"dc56-36"}]},"dc56-34":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/time.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-35"},"imported":[],"importedBy":[{"uid":"dc56-54"},{"uid":"dc56-36"}]},"dc56-36":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/proxy.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-37"},"imported":[{"uid":"dc56-32"},{"uid":"dc56-34"}],"importedBy":[{"uid":"dc56-54"}]},"dc56-38":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/api.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-39"},"imported":[],"importedBy":[{"uid":"dc56-50"}]},"dc56-40":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/app.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-41"},"imported":[],"importedBy":[{"uid":"dc56-50"}]},"dc56-42":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/component.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-43"},"imported":[],"importedBy":[{"uid":"dc56-50"}]},"dc56-44":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/context.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-45"},"imported":[],"importedBy":[{"uid":"dc56-50"}]},"dc56-46":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/hooks.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-47"},"imported":[],"importedBy":[{"uid":"dc56-50"}]},"dc56-48":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/util.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-49"},"imported":[],"importedBy":[{"uid":"dc56-50"}]},"dc56-50":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/index.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-51"},"imported":[{"uid":"dc56-38"},{"uid":"dc56-40"},{"uid":"dc56-42"},{"uid":"dc56-44"},{"uid":"dc56-46"},{"uid":"dc56-48"}],"importedBy":[{"uid":"dc56-54"}]},"dc56-52":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/plugin.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-53"},"imported":[],"importedBy":[{"uid":"dc56-54"}]},"dc56-54":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/index.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-55"},"imported":[{"uid":"dc56-30"},{"uid":"dc56-32"},{"uid":"dc56-36"},{"uid":"dc56-50"},{"uid":"dc56-52"},{"uid":"dc56-34"}],"importedBy":[{"uid":"dc56-56"}]},"dc56-56":{"id":"/node_modules/.pnpm/vue-router@4.0.14_vue@3.2.31/node_modules/vue-router/dist/vue-router.esm-bundler.js","moduleParts":{"assets/vendor.c7e57498.js":"dc56-57"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-54"}],"importedBy":[{"uid":"dc56-8"}]},"dc56-58":{"id":"/src/views/index.vue","moduleParts":{"assets/index.3c65c250.js":"dc56-59"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-10"}],"importedBy":[{"uid":"dc56-4"}]},"dc56-60":{"id":"/src/views/page.vue","moduleParts":{"assets/page.c3c1e70d.js":"dc56-61"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-10"}],"importedBy":[{"uid":"dc56-4"}]},"dc56-62":{"id":"/src/layout/index.vue?vue&type=style&index=0&scoped=true&lang.scss","moduleParts":{"assets/index.83ed42c6.js":"dc56-63"},"imported":[],"importedBy":[{"uid":"dc56-64"}]},"dc56-64":{"id":"/src/layout/index.vue","moduleParts":{"assets/index.83ed42c6.js":"dc56-65"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-62"},{"uid":"dc56-10"}],"importedBy":[{"uid":"dc56-6"}]},"dc56-66":{"id":"/src/views/my/index.vue?vue&type=style&index=0&lang.css","moduleParts":{"assets/index.d027efbd.js":"dc56-67"},"imported":[],"importedBy":[{"uid":"dc56-68"}]},"dc56-68":{"id":"/src/views/my/index.vue","moduleParts":{"assets/index.d027efbd.js":"dc56-69"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-66"},{"uid":"dc56-10"}],"importedBy":[{"uid":"dc56-6"}]},"dc56-70":{"id":"/src/views/my/about.vue?vue&type=style&index=0&lang.css","moduleParts":{"assets/about.4dd86a7b.js":"dc56-71"},"imported":[],"importedBy":[{"uid":"dc56-72"}]},"dc56-72":{"id":"/src/views/my/about.vue","moduleParts":{"assets/about.4dd86a7b.js":"dc56-73"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-70"},{"uid":"dc56-10"}],"importedBy":[{"uid":"dc56-6"}]},"dc56-74":{"id":"/src/views/my/center.vue?vue&type=style&index=0&lang.css","moduleParts":{"assets/center.ed8af229.js":"dc56-75"},"imported":[],"importedBy":[{"uid":"dc56-76"}]},"dc56-76":{"id":"/src/views/my/center.vue","moduleParts":{"assets/center.ed8af229.js":"dc56-77"},"imported":[{"uid":"dc56-28"},{"uid":"dc56-74"},{"uid":"dc56-10"}],"importedBy":[{"uid":"dc56-6"}]}},"env":{"rollup":"2.70.1"},"options":{"gzip":false,"brotli":false,"sourcemap":false}};
+    const data = {"version":2,"tree":{"name":"root","children":[{"name":"assets/index.74e8d381.js","children":[{"name":"vite","children":[{"uid":"49df-356","name":"modulepreload-polyfill"},{"uid":"49df-358","name":"preload-helper"}]},{"name":"src","children":[{"name":"router","children":[{"name":"modules","children":[{"uid":"49df-360","name":"index.ts"},{"uid":"49df-362","name":"my.ts"}]},{"uid":"49df-364","name":"index.ts"}]},{"uid":"49df-368","name":"App.vue"},{"name":"style/tailwind.css","uid":"49df-370"},{"uid":"49df-372","name":"main.ts"}]},{"uid":"49df-366","name":"plugin-vue:export-helper"},{"uid":"49df-374","name":"index.html"}]},{"name":"assets/vendor.10bdad37.js","children":[{"name":"node_modules/.pnpm","children":[{"name":"@vue+shared@3.2.31/node_modules/@vue/shared/dist/shared.esm-bundler.js","uid":"49df-376"},{"name":"@vue+reactivity@3.2.31/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js","uid":"49df-378"},{"name":"@vue+runtime-core@3.2.31/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js","uid":"49df-380"},{"name":"@vue+runtime-dom@3.2.31/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js","uid":"49df-382"},{"name":"vue@3.2.31/node_modules/vue/dist/vue.runtime.esm-bundler.js","uid":"49df-384"},{"name":"@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm","children":[{"uid":"49df-386","name":"env.js"},{"uid":"49df-388","name":"const.js"},{"uid":"49df-390","name":"time.js"},{"uid":"49df-392","name":"proxy.js"},{"name":"api","children":[{"uid":"49df-394","name":"api.js"},{"uid":"49df-396","name":"app.js"},{"uid":"49df-398","name":"component.js"},{"uid":"49df-400","name":"context.js"},{"uid":"49df-402","name":"hooks.js"},{"uid":"49df-404","name":"util.js"},{"uid":"49df-406","name":"index.js"}]},{"uid":"49df-408","name":"plugin.js"},{"uid":"49df-410","name":"index.js"}]},{"name":"vue-router@4.0.14_vue@3.2.31/node_modules/vue-router/dist/vue-router.esm-bundler.js","uid":"49df-412"}]}]},{"name":"assets/index.8ef2bf0a.js","children":[{"name":"node_modules/.pnpm","children":[{"name":"@vueuse+shared@8.1.2_vue@3.2.31/node_modules/@vueuse/shared/index.mjs","uid":"49df-414"},{"name":"@vueuse+core@8.1.2_vue@3.2.31/node_modules/@vueuse/core/index.mjs","uid":"49df-416"}]},{"name":"src","children":[{"name":"store/index.ts","uid":"49df-418"},{"name":"views/index.vue","uid":"49df-420"}]}]},{"name":"assets/index.e819c315.js","children":[{"name":"src/layout","children":[{"uid":"49df-422","name":"index.vue?vue&type=style&index=0&scoped=true&lang.scss"},{"uid":"49df-424","name":"index.vue"}]}]},{"name":"assets/index.169b3908.js","children":[{"name":"src/views/my","children":[{"uid":"49df-426","name":"index.vue?vue&type=style&index=0&lang.css"},{"uid":"49df-428","name":"index.vue"}]}]},{"name":"assets/about.0dc363e5.js","children":[{"name":"src/views/my","children":[{"uid":"49df-430","name":"about.vue?vue&type=style&index=0&lang.css"},{"uid":"49df-432","name":"about.vue"}]}]},{"name":"assets/center.d83394b4.js","children":[{"name":"src/views/my","children":[{"uid":"49df-434","name":"center.vue?vue&type=style&index=0&lang.css"},{"uid":"49df-436","name":"center.vue"}]}]}],"isRoot":true},"nodeParts":{"49df-356":{"renderedLength":1572,"gzipLength":0,"brotliLength":0,"mainUid":"49df-355"},"49df-358":{"renderedLength":1363,"gzipLength":0,"brotliLength":0,"mainUid":"49df-357"},"49df-360":{"renderedLength":160,"gzipLength":0,"brotliLength":0,"mainUid":"49df-359"},"49df-362":{"renderedLength":667,"gzipLength":0,"brotliLength":0,"mainUid":"49df-361"},"49df-364":{"renderedLength":561,"gzipLength":0,"brotliLength":0,"mainUid":"49df-363"},"49df-366":{"renderedLength":157,"gzipLength":0,"brotliLength":0,"mainUid":"49df-365"},"49df-368":{"renderedLength":261,"gzipLength":0,"brotliLength":0,"mainUid":"49df-367"},"49df-370":{"renderedLength":18,"gzipLength":0,"brotliLength":0,"mainUid":"49df-369"},"49df-372":{"renderedLength":140,"gzipLength":0,"brotliLength":0,"mainUid":"49df-371"},"49df-374":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-373"},"49df-376":{"renderedLength":7485,"gzipLength":0,"brotliLength":0,"mainUid":"49df-375"},"49df-378":{"renderedLength":31070,"gzipLength":0,"brotliLength":0,"mainUid":"49df-377"},"49df-380":{"renderedLength":151929,"gzipLength":0,"brotliLength":0,"mainUid":"49df-379"},"49df-382":{"renderedLength":18419,"gzipLength":0,"brotliLength":0,"mainUid":"49df-381"},"49df-384":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-383"},"49df-386":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-385"},"49df-388":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-387"},"49df-390":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-389"},"49df-392":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-391"},"49df-394":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-393"},"49df-396":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-395"},"49df-398":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-397"},"49df-400":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-399"},"49df-402":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-401"},"49df-404":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-403"},"49df-406":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-405"},"49df-408":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-407"},"49df-410":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"mainUid":"49df-409"},"49df-412":{"renderedLength":98399,"gzipLength":0,"brotliLength":0,"mainUid":"49df-411"},"49df-414":{"renderedLength":1584,"gzipLength":0,"brotliLength":0,"mainUid":"49df-413"},"49df-416":{"renderedLength":4478,"gzipLength":0,"brotliLength":0,"mainUid":"49df-415"},"49df-418":{"renderedLength":99,"gzipLength":0,"brotliLength":0,"mainUid":"49df-417"},"49df-420":{"renderedLength":422,"gzipLength":0,"brotliLength":0,"mainUid":"49df-419"},"49df-422":{"renderedLength":59,"gzipLength":0,"brotliLength":0,"mainUid":"49df-421"},"49df-424":{"renderedLength":1540,"gzipLength":0,"brotliLength":0,"mainUid":"49df-423"},"49df-426":{"renderedLength":47,"gzipLength":0,"brotliLength":0,"mainUid":"49df-425"},"49df-428":{"renderedLength":702,"gzipLength":0,"brotliLength":0,"mainUid":"49df-427"},"49df-430":{"renderedLength":47,"gzipLength":0,"brotliLength":0,"mainUid":"49df-429"},"49df-432":{"renderedLength":365,"gzipLength":0,"brotliLength":0,"mainUid":"49df-431"},"49df-434":{"renderedLength":48,"gzipLength":0,"brotliLength":0,"mainUid":"49df-433"},"49df-436":{"renderedLength":420,"gzipLength":0,"brotliLength":0,"mainUid":"49df-435"}},"nodeMetas":{"49df-355":{"id":"vite/modulepreload-polyfill","moduleParts":{"assets/index.74e8d381.js":"49df-356"},"imported":[],"importedBy":[{"uid":"49df-373"}]},"49df-357":{"id":"vite/preload-helper","moduleParts":{"assets/index.74e8d381.js":"49df-358"},"imported":[],"importedBy":[{"uid":"49df-359"},{"uid":"49df-361"}]},"49df-359":{"id":"/src/router/modules/index.ts","moduleParts":{"assets/index.74e8d381.js":"49df-360"},"imported":[{"uid":"49df-357"},{"uid":"49df-419","dynamic":true}],"importedBy":[{"uid":"49df-363"}]},"49df-361":{"id":"/src/router/modules/my.ts","moduleParts":{"assets/index.74e8d381.js":"49df-362"},"imported":[{"uid":"49df-357"},{"uid":"49df-423","dynamic":true},{"uid":"49df-427","dynamic":true},{"uid":"49df-431","dynamic":true},{"uid":"49df-435","dynamic":true}],"importedBy":[{"uid":"49df-363"}]},"49df-363":{"id":"/src/router/index.ts","moduleParts":{"assets/index.74e8d381.js":"49df-364"},"imported":[{"uid":"49df-359"},{"uid":"49df-361"},{"uid":"49df-411"}],"importedBy":[{"uid":"49df-371"}]},"49df-365":{"id":"plugin-vue:export-helper","moduleParts":{"assets/index.74e8d381.js":"49df-366"},"imported":[],"importedBy":[{"uid":"49df-367"},{"uid":"49df-423"},{"uid":"49df-427"},{"uid":"49df-431"},{"uid":"49df-435"}]},"49df-367":{"id":"/src/App.vue","moduleParts":{"assets/index.74e8d381.js":"49df-368"},"imported":[{"uid":"49df-383"},{"uid":"49df-365"}],"importedBy":[{"uid":"49df-371"}]},"49df-369":{"id":"/src/style/tailwind.css","moduleParts":{"assets/index.74e8d381.js":"49df-370"},"imported":[],"importedBy":[{"uid":"49df-371"}]},"49df-371":{"id":"/src/main.ts","moduleParts":{"assets/index.74e8d381.js":"49df-372"},"imported":[{"uid":"49df-383"},{"uid":"49df-363"},{"uid":"49df-367"},{"uid":"49df-369"}],"importedBy":[{"uid":"49df-373"}]},"49df-373":{"id":"/index.html","moduleParts":{"assets/index.74e8d381.js":"49df-374"},"imported":[{"uid":"49df-355"},{"uid":"49df-371"}],"importedBy":[],"isEntry":true},"49df-375":{"id":"/node_modules/.pnpm/@vue+shared@3.2.31/node_modules/@vue/shared/dist/shared.esm-bundler.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-376"},"imported":[],"importedBy":[{"uid":"49df-381"},{"uid":"49df-379"},{"uid":"49df-377"}]},"49df-377":{"id":"/node_modules/.pnpm/@vue+reactivity@3.2.31/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-378"},"imported":[{"uid":"49df-375"}],"importedBy":[{"uid":"49df-379"}]},"49df-379":{"id":"/node_modules/.pnpm/@vue+runtime-core@3.2.31/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-380"},"imported":[{"uid":"49df-377"},{"uid":"49df-375"}],"importedBy":[{"uid":"49df-381"}]},"49df-381":{"id":"/node_modules/.pnpm/@vue+runtime-dom@3.2.31/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-382"},"imported":[{"uid":"49df-379"},{"uid":"49df-375"}],"importedBy":[{"uid":"49df-383"}]},"49df-383":{"id":"/node_modules/.pnpm/vue@3.2.31/node_modules/vue/dist/vue.runtime.esm-bundler.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-384"},"imported":[{"uid":"49df-381"}],"importedBy":[{"uid":"49df-371"},{"uid":"49df-367"},{"uid":"49df-411"},{"uid":"49df-419"},{"uid":"49df-423"},{"uid":"49df-427"},{"uid":"49df-431"},{"uid":"49df-435"},{"uid":"49df-437"}]},"49df-385":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/env.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-386"},"imported":[],"importedBy":[{"uid":"49df-409"}]},"49df-387":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/const.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-388"},"imported":[],"importedBy":[{"uid":"49df-409"},{"uid":"49df-391"}]},"49df-389":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/time.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-390"},"imported":[],"importedBy":[{"uid":"49df-409"},{"uid":"49df-391"}]},"49df-391":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/proxy.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-392"},"imported":[{"uid":"49df-387"},{"uid":"49df-389"}],"importedBy":[{"uid":"49df-409"}]},"49df-393":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/api.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-394"},"imported":[],"importedBy":[{"uid":"49df-405"}]},"49df-395":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/app.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-396"},"imported":[],"importedBy":[{"uid":"49df-405"}]},"49df-397":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/component.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-398"},"imported":[],"importedBy":[{"uid":"49df-405"}]},"49df-399":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/context.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-400"},"imported":[],"importedBy":[{"uid":"49df-405"}]},"49df-401":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/hooks.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-402"},"imported":[],"importedBy":[{"uid":"49df-405"}]},"49df-403":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/util.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-404"},"imported":[],"importedBy":[{"uid":"49df-405"}]},"49df-405":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/api/index.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-406"},"imported":[{"uid":"49df-393"},{"uid":"49df-395"},{"uid":"49df-397"},{"uid":"49df-399"},{"uid":"49df-401"},{"uid":"49df-403"}],"importedBy":[{"uid":"49df-409"}]},"49df-407":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/plugin.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-408"},"imported":[],"importedBy":[{"uid":"49df-409"}]},"49df-409":{"id":"/node_modules/.pnpm/@vue+devtools-api@6.1.3/node_modules/@vue/devtools-api/lib/esm/index.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-410"},"imported":[{"uid":"49df-385"},{"uid":"49df-387"},{"uid":"49df-391"},{"uid":"49df-405"},{"uid":"49df-407"},{"uid":"49df-389"}],"importedBy":[{"uid":"49df-411"}]},"49df-411":{"id":"/node_modules/.pnpm/vue-router@4.0.14_vue@3.2.31/node_modules/vue-router/dist/vue-router.esm-bundler.js","moduleParts":{"assets/vendor.10bdad37.js":"49df-412"},"imported":[{"uid":"49df-383"},{"uid":"49df-409"}],"importedBy":[{"uid":"49df-363"}]},"49df-413":{"id":"/node_modules/.pnpm/@vueuse+shared@8.1.2_vue@3.2.31/node_modules/@vueuse/shared/index.mjs","moduleParts":{"assets/index.8ef2bf0a.js":"49df-414"},"imported":[{"uid":"49df-437"}],"importedBy":[{"uid":"49df-415"}]},"49df-415":{"id":"/node_modules/.pnpm/@vueuse+core@8.1.2_vue@3.2.31/node_modules/@vueuse/core/index.mjs","moduleParts":{"assets/index.8ef2bf0a.js":"49df-416"},"imported":[{"uid":"49df-413"},{"uid":"49df-437"},{"uid":"49df-415"}],"importedBy":[{"uid":"49df-417"},{"uid":"49df-415"}]},"49df-417":{"id":"/src/store/index.ts","moduleParts":{"assets/index.8ef2bf0a.js":"49df-418"},"imported":[{"uid":"49df-415"}],"importedBy":[{"uid":"49df-419"}]},"49df-419":{"id":"/src/views/index.vue","moduleParts":{"assets/index.8ef2bf0a.js":"49df-420"},"imported":[{"uid":"49df-383"},{"uid":"49df-417"}],"importedBy":[{"uid":"49df-359"}]},"49df-421":{"id":"/src/layout/index.vue?vue&type=style&index=0&scoped=true&lang.scss","moduleParts":{"assets/index.e819c315.js":"49df-422"},"imported":[],"importedBy":[{"uid":"49df-423"}]},"49df-423":{"id":"/src/layout/index.vue","moduleParts":{"assets/index.e819c315.js":"49df-424"},"imported":[{"uid":"49df-383"},{"uid":"49df-421"},{"uid":"49df-365"}],"importedBy":[{"uid":"49df-361"}]},"49df-425":{"id":"/src/views/my/index.vue?vue&type=style&index=0&lang.css","moduleParts":{"assets/index.169b3908.js":"49df-426"},"imported":[],"importedBy":[{"uid":"49df-427"}]},"49df-427":{"id":"/src/views/my/index.vue","moduleParts":{"assets/index.169b3908.js":"49df-428"},"imported":[{"uid":"49df-383"},{"uid":"49df-425"},{"uid":"49df-365"}],"importedBy":[{"uid":"49df-361"}]},"49df-429":{"id":"/src/views/my/about.vue?vue&type=style&index=0&lang.css","moduleParts":{"assets/about.0dc363e5.js":"49df-430"},"imported":[],"importedBy":[{"uid":"49df-431"}]},"49df-431":{"id":"/src/views/my/about.vue","moduleParts":{"assets/about.0dc363e5.js":"49df-432"},"imported":[{"uid":"49df-383"},{"uid":"49df-429"},{"uid":"49df-365"}],"importedBy":[{"uid":"49df-361"}]},"49df-433":{"id":"/src/views/my/center.vue?vue&type=style&index=0&lang.css","moduleParts":{"assets/center.d83394b4.js":"49df-434"},"imported":[],"importedBy":[{"uid":"49df-435"}]},"49df-435":{"id":"/src/views/my/center.vue","moduleParts":{"assets/center.d83394b4.js":"49df-436"},"imported":[{"uid":"49df-383"},{"uid":"49df-433"},{"uid":"49df-365"}],"importedBy":[{"uid":"49df-361"}]},"49df-437":{"id":"/node_modules/.pnpm/vue-demi@0.12.4_vue@3.2.31/node_modules/vue-demi/lib/index.mjs","moduleParts":{},"imported":[{"uid":"49df-383"}],"importedBy":[{"uid":"49df-415"},{"uid":"49df-413"}]}},"env":{"rollup":"2.70.1"},"options":{"gzip":false,"brotli":false,"sourcemap":false}};
 
     const run = () => {
       const width = window.innerWidth;

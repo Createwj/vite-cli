@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import legacy from '@vitejs/plugin-legacy'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 import { resolve } from 'path'
 const pathResolve = (dir: string): any => {
@@ -23,7 +25,19 @@ export default defineConfig({
     proxy: {},
     cors: true
   },
-  plugins: [vue()],
+  build: {
+    cssCodeSplit: false
+  },
+  plugins: [
+    vue(),
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+      polyfills: true
+    }),
+    visualizer({
+      template: 'sunburst'
+    })
+  ],
   resolve: {
     // ***** 路径配置新增
     alias // ***** 路径配置新增
