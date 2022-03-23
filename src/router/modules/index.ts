@@ -1,4 +1,5 @@
-export default [
+import type { RouteRecordRaw } from 'vue-router'
+const index: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('@/views/index.vue')
@@ -8,3 +9,4 @@ export default [
     component: () => import('@/views/page.vue')
   }
 ]
+export default index

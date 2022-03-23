@@ -1,6 +1,5 @@
 /**
  * @module .eslintrc
- * @author: huoyou
  * @description: eslint配置
  *
  * 所需插件
