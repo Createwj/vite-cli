@@ -49,8 +49,9 @@ module.exports = {
     'prettier',
     'plugin:prettier/recommended'
   ],
-  plugins: ['vue'],
+  plugins: ['vue', 'prettier'],
   rules: {
+    'prettier/prettier': ['error'],
     'no-console': process.env.NODE_ENV === 'production' ? 1 : 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 1 : 0,
     eqeqeq: 2, // 要求使用 === 和 !==
