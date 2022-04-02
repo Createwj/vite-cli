@@ -9,4 +9,8 @@
     <p class="mt-8 text-2xl text-blue-200">Hello</p>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const a = {
+  abc: 123
+}
+</script>
