@@ -20,7 +20,6 @@ prop types outside of templates. However, if you wish to get actual prop types i
 # 环境配置
 
 node v16.13.1 pnpm 6.32.3 .husk 不起作用 执行
-
 ```
 chmod 777 .husky/pre-commit
 chmod 777 .husky/commit-msg
