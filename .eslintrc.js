@@ -16,24 +16,24 @@
  * "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
  */
 
-module.exports = {
+ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true,
+    node: true
   },
   globals: {
     Message: true,
     env: true,
     useRoute: true,
     useRouter: true,
-    useStore: true,
+    useStore: true
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   extends: [
     'vue-global-api',
@@ -41,14 +41,28 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
-    'plugin:prettier/recommended',
+    'plugin:prettier/recommended'
   ],
   plugins: ['vue', 'prettier', '@typescript-eslint'],
   rules: {
-    'prettier/prettier': ['off'],
     'vue/multi-word-component-names': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 1 : 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 1 : 0,
+
+    'max-len': ['error', { code: 100, tabWidth: 2 }],
+    quotes: ['error', 'single'],
+    semi: ['error', 'never'],
+    'comma-dangle': [
+      'error',
+      {
+        arrays: 'never',
+        objects: 'never',
+        imports: 'never',
+        exports: 'never',
+        functions: 'never'
+      }
+    ],
+
     eqeqeq: 2,
     'vue/eqeqeq': 2,
     'no-undef': 2,
@@ -67,5 +81,27 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-empty-function': 0,
-  },
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 100,
+        tabWidth: 2,
+        tabs: false,
+        semi: false,
+        singleQuote: true,
+        parser: 'flow',
+        trailingComma: 'none',
+        bracketSpacing: true,
+        arrowParens: 'always',
+        proseWrap: 'always',
+        htmlWhitespaceSensitivity: 'ignore',
+        vueIndentScriptAndStyle: false,
+        stylelintIntegration: true,
+        endOfLine: 'auto'
+      },
+      {
+        usePrettierrc: true
+      }
+    ]
+  }
 }
